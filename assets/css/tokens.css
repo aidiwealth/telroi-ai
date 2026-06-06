@@ -1,0 +1,38 @@
+/* ============================================================
+   Telroi — Design tokens
+   CSS variables: colors, type, spacing, motion
+   ============================================================ */
+
+:root {
+  /* Container */
+  --container: 1140px;
+
+  /* Color — neutral ink */
+  --ink:        #0A0A0B;
+  --ink-soft:   #5b5b62;
+  --ink-mute:   #8b8b93;
+
+  /* Color — paper / surfaces */
+  --paper:      #ffffff;
+  --paper-2:    #f7f6f3;
+  --paper-3:    #f1efea;
+  --rule:       #e7e5e0;
+  --rule-2:     #ebe9e4;
+
+  /* Color — Telroi signal blue */
+  --signal:        #1a4b72;
+  --signal-2:      #123857;
+  --signal-soft:   #e7eef4;
+  --signal-bright: #4d83b3;
+
+  /* Typography */
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  /* Shape & motion */
+  --radius:       12px;
+  --radius-lg:    20px;
+  --shadow-card:  0 1px 0 rgba(10,10,11,0.03), 0 10px 30px -12px rgba(10,10,11,0.08);
+  --motion-ease:  cubic-bezier(0.4, 0, 0.2, 1);
+}
