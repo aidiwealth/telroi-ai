@@ -4,7 +4,7 @@
     <section class="pricing-head">
       <div class="wrap">
         <div class="kicker reveal">Pricing</div>
-        <h1 class="reveal">Simple, transparent <span>pricing.</span></h1>
+        <h1 class="reveal">Simple, transparent <em>pricing.</em></h1>
         <p class="lede reveal">One plan fee per workspace, plus usage-based rates for voice infrastructure. Every plan starts with a 7-day trial.</p>
 
         <!-- Currency switcher -->
@@ -413,7 +413,7 @@ const pricingFaqs = computed(() => [
   line-height: 1.06; letter-spacing: -0.03em;
   margin: 0 0 20px; max-width: 680px;
 }
-.pricing-head h1 em { font-style: italic; font-weight: 300; color: var(--ink-soft); }
+.pricing-head h1 em { font-style: normal; font-weight: 300; color: var(--ink-soft); }
 .pricing-head .lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 560px; margin: 0; }
 
 /* Currency switcher */

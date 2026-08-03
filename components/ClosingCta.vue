@@ -3,7 +3,7 @@
     <div class="wrap">
       <h2>
         <span>{{ titleStart || t('closing.title1') }}</span><br/>
-        <span>{{ titleEm || t('closing.titleEm') }}</span>
+        <em>{{ titleEm || t('closing.titleEm') }}</em>
       </h2>
       <p>{{ body || t('closing.body') }}</p>
       <button
@@ -59,7 +59,7 @@ withDefaults(
   color: var(--ink);
 }
 .closing h2 em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--ink-soft);
 }

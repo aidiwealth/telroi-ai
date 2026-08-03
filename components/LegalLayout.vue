@@ -5,7 +5,7 @@
       <div class="legal-head reveal">
         <div class="kicker">{{ kicker }}</div>
         <h1>
-          <span>{{ titleStart }}</span> <span>{{ titleEm }}</span>
+          <span>{{ titleStart }}</span> <em>{{ titleEm }}</em>
         </h1>
         <p v-if="lede" class="lede">{{ lede }}</p>
       </div>
@@ -89,7 +89,7 @@ defineProps<{
   margin: 0 0 18px;
 }
 .legal-head h1 em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--ink-soft);
   margin-left: 8px;

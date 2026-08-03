@@ -14,7 +14,7 @@
         <div class="showcase-grid">
           <div class="showcase-text reveal">
             <div class="kicker-text">Built on a router that scales</div>
-            <h2>Every call, <span>routed through one layer.</span></h2>
+            <h2>Every call, <em>routed through one layer.</em></h2>
             <p>Telroi's routing layer sits between your applications and the global voice network. SIP, PSTN, mobile. One API, real-time delivery analytics, no vendor stitching.</p>
             <ul class="showcase-mini-list">
               <li>2,800+ active routes across our termination footprint</li>
@@ -42,7 +42,7 @@
         <div class="showcase-grid">
           <div class="showcase-text reveal">
             <div class="kicker-text">Voice meets business logic</div>
-            <h2>Calls that <span>write back to your systems.</span></h2>
+            <h2>Calls that <em>write back to your systems.</em></h2>
             <p>Connect takes a voice call and turns it into something your business can act on — a CRM write, a calendar booking, a workflow trigger. The conversation drives the system, not the other way around.</p>
             <ul class="showcase-mini-list">
               <li>Native integrations with Pipedrive, Zoho, Zapier and more</li>
@@ -66,7 +66,7 @@
 
     <EditorialCallout
       label="Why Telroi Connect"
-      text="Connect runs the same SIP infrastructure that powers <span>Telroi VAN and partner CPaaS platforms</span>. Build on rails already proven at carrier-grade volume, with voice workflows and business logic in the same API."
+      text="Connect runs the same SIP infrastructure that powers <em>Telroi VAN and partner CPaaS platforms</em>. Build on rails already proven at carrier-grade volume, with voice workflows and business logic in the same API."
     />
 
     <ClosingCta
@@ -151,7 +151,7 @@ const workflowCapabilities = [
   font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.025em;
   line-height: 1.05; margin: 0 0 24px;
 }
-.showcase-text h2 em { font-style: italic; color: var(--ink-soft); font-weight: 300; }
+.showcase-text h2 em { font-style: normal; color: var(--ink-soft); font-weight: 300; }
 .showcase-text p { font-size: 17px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 24px; }
 .showcase-mini-list { margin: 28px 0 0; }
 .showcase-mini-list li {

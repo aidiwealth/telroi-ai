@@ -4,7 +4,7 @@
       <div class="sec-head reveal">
         <div class="kicker">Use cases</div>
         <h2 class="sec-title">
-          <span>Voice infrastructure that fits</span> <span>where you operate.</span>
+          <span>Voice infrastructure that fits</span> <em>where you operate.</em>
         </h2>
         <p class="sec-lede">
           From a single AI receptionist for a small business to high-volume traffic for fintechs,

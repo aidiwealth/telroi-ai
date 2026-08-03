@@ -8,7 +8,7 @@
       <div class="hero-content">
         <h1 class="hero-title">
           <span>{{ t('hero.title1') }}</span><br/>
-          <span>{{ t('hero.titleEm') }}</span> <span>{{ t('hero.title2') }}</span>
+          <em>{{ t('hero.titleEm') }}</em> <span>{{ t('hero.title2') }}</span>
         </h1>
         <p class="hero-sub">
           <span>{{ t('hero.sub1') }}</span><br/>
@@ -80,7 +80,7 @@ h1.hero-title {
   letter-spacing: -0.035em;
   margin: 0 0 22px;
 }
-h1.hero-title em { font-style: italic; font-weight: 300; color: #a1bdd4; }
+h1.hero-title em { font-style: normal; font-weight: 300; color: #a1bdd4; }
 .hero-sub {
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.55;

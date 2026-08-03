@@ -5,7 +5,7 @@
         <div class="biz-text reveal">
           <div class="kicker">{{ t('biz.kicker') }}</div>
           <h2 class="sec-title">
-            {{ t('biz.title') }}<br/><span>{{ t('biz.titleEm') }}</span>
+            {{ t('biz.title') }}<br/><em>{{ t('biz.titleEm') }}</em>
           </h2>
           <p class="sec-lede">
             {{ t('biz.lede') }}
@@ -97,7 +97,7 @@ const { t } = useI18n();
 
 /* Left text */
 .biz-text .sec-title { margin: 24px 0 20px; font-size: clamp(32px, 4vw, 48px); }
-.biz-text .sec-title em { font-style: italic; color: var(--signal); }
+.biz-text .sec-title em { font-style: normal; color: var(--signal); }
 .biz-text .sec-lede { margin: 0 0 32px; max-width: 420px; }
 
 .biz-list {

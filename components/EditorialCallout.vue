@@ -38,7 +38,7 @@ defineProps<{ label: string; text: string }>();
   margin: 0;
 }
 .editorial p :deep(em) {
-  font-style: italic;
+  font-style: normal;
   color: var(--ink-soft);
 }
 </style>

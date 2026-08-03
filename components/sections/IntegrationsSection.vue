@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="kicker">Integrations</div>
-        <h2 class="sec-title"><span>Seamless</span> <span>integrations.</span></h2>
+        <h2 class="sec-title"><span>Seamless</span> <em>integrations.</em></h2>
         <p class="sec-lede">Plug voice directly into the CRM and automation tools your team already runs. Bring your own AI on top.</p>
       </div>
 
@@ -28,7 +28,7 @@
       <!-- AI voice provider sub-divider -->
       <div class="int-divider reveal">
         <div class="sublabel">AI voice providers</div>
-        <h3><span>Connect your preferred</span> <span>AI voice provider.</span></h3>
+        <h3><span>Connect your preferred</span> <em>AI voice provider.</em></h3>
         <p>
           Telroi integrates with modern AI voice platforms so businesses can bring their own
           speech, reasoning and voice generation stack — while Telroi powers the voice
@@ -190,7 +190,7 @@ const aiProviders = [
   margin: 0 0 14px;
   color: var(--ink);
 }
-.int-divider h3 em { font-style: italic; font-weight: 300; color: var(--ink-soft); }
+.int-divider h3 em { font-style: normal; font-weight: 300; color: var(--ink-soft); }
 .int-divider p {
   font-size: 16px;
   line-height: 1.55;

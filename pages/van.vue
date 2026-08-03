@@ -13,7 +13,7 @@
         <div class="showcase-grid">
           <div class="showcase-text reveal">
             <div class="kicker-text">A number that picks up</div>
-            <h2>First-ring pickup. <span>Every conversation captured.</span></h2>
+            <h2>First-ring pickup. <em>Every conversation captured.</em></h2>
             <p>A Virtual AI Number is a real business number with an AI assistant attached. Answers in local languages, captures intent, writes to your CRM, escalates to a human when needed.</p>
             <ul class="showcase-mini-list">
               <li>Live conversation in 30+ languages</li>
@@ -36,7 +36,7 @@
     />
     <EditorialCallout
       label="Why Telroi VAN"
-      text="VAN is what Telroi looks like when the entire voice stack <span>lands as a single product</span>. Numbers, AI, routing, recording, escalation — one phone number, ready to use."
+      text="VAN is what Telroi looks like when the entire voice stack <em>lands as a single product</em>. Numbers, AI, routing, recording, escalation — one phone number, ready to use."
     />
     <ClosingCta
       title-start="Voice infrastructure for"
@@ -71,7 +71,7 @@ const capabilities = [
   font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.025em;
   line-height: 1.05; margin: 0 0 24px;
 }
-.showcase-text h2 em { font-style: italic; color: var(--ink-soft); font-weight: 300; }
+.showcase-text h2 em { font-style: normal; color: var(--ink-soft); font-weight: 300; }
 .showcase-text p { font-size: 17px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 24px; }
 .showcase-mini-list { margin: 28px 0 0; }
 .showcase-mini-list li {

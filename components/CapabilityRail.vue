@@ -4,7 +4,7 @@
       <div class="sec-head reveal">
         <div class="kicker">{{ kicker }}</div>
         <h2 class="sec-title">
-          <span>{{ titleStart }}</span> <span>{{ titleEm }}</span>
+          <span>{{ titleStart }}</span> <em>{{ titleEm }}</em>
         </h2>
       </div>
       <div class="cap-rail-grid">

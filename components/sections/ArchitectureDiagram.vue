@@ -6,7 +6,7 @@
           <div class="sec-head reveal">
             <div class="kicker">Architecture</div>
             <h2 class="sec-title">
-              <span>One programmable layer between</span> <span>your business</span> <span>and voice networks.</span>
+              <span>One programmable layer between</span> <em>your business</em> <span>and voice networks.</span>
             </h2>
             <p class="sec-lede">
               Every call — inbound, outbound, AI-handled or human-answered — flows through a

@@ -8,7 +8,7 @@
         <div class="product-hero-kicker">{{ kicker }}</div>
         <h1>
           <span>{{ titleStart }}</span><br/>
-          <span>{{ titleEm }}</span>
+          <em>{{ titleEm }}</em>
         </h1>
         <p class="lede">{{ lede }}</p>
         <div class="product-hero-ctas">
@@ -116,7 +116,7 @@ withDefaults(
   margin: 0 0 24px;
 }
 .product-hero h1 em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
 }

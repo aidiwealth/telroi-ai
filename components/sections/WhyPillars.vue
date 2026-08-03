@@ -4,7 +4,7 @@
       <div class="sec-head reveal">
         <div class="kicker">{{ t('pillars.kicker') }}</div>
         <h2 class="sec-title">
-          <span>{{ t('pillars.title') }}</span> <span>{{ t('pillars.titleEm') }}</span>
+          <span>{{ t('pillars.title') }}</span> <em>{{ t('pillars.titleEm') }}</em>
         </h2>
         <p class="sec-lede">{{ t('pillars.lede') }}</p>
       </div>

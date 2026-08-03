@@ -6,7 +6,7 @@
         <div class="api-left reveal">
           <div class="kicker">{{ t('dev.kicker') }}</div>
           <h2 class="sec-title">
-            <span>{{ t('dev.title') }}</span> <span>{{ t('dev.titleEm') }}</span>
+            <span>{{ t('dev.title') }}</span> <em>{{ t('dev.titleEm') }}</em>
           </h2>
           <p class="sec-lede">
             {{ t('dev.lede') }}

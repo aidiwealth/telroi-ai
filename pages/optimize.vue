@@ -13,7 +13,7 @@
         <div class="showcase-grid">
           <div class="showcase-text reveal">
             <div class="kicker-text">Network-level intelligence</div>
-            <h2>Live signal across <span>every route, every call.</span></h2>
+            <h2>Live signal across <em>every route, every call.</em></h2>
             <p>Optimize sits at the network layer — scoring routes, catching fraud and predicting quality drops before they reach your customers. The intelligence under the calls, not in them.</p>
             <ul class="showcase-mini-list">
               <li>Average customer sees 15–30% answer-rate lift</li>
@@ -36,7 +36,7 @@
     />
     <EditorialCallout
       label="Why Telroi Optimize"
-      text="Optimize is what makes Telroi <span>AI-native</span>. The routing and quality layer is intelligent by default — not an add-on, not a feature. You just see better numbers."
+      text="Optimize is what makes Telroi <em>AI-native</em>. The routing and quality layer is intelligent by default — not an add-on, not a feature. You just see better numbers."
     />
     <ClosingCta
       title-start="Voice infrastructure for"
@@ -71,7 +71,7 @@ const capabilities = [
   font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.025em;
   line-height: 1.05; margin: 0 0 24px;
 }
-.showcase-text h2 em { font-style: italic; color: var(--ink-soft); font-weight: 300; }
+.showcase-text h2 em { font-style: normal; color: var(--ink-soft); font-weight: 300; }
 .showcase-text p { font-size: 17px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 24px; }
 .showcase-mini-list { margin: 28px 0 0; }
 .showcase-mini-list li {
