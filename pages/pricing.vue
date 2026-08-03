@@ -358,7 +358,6 @@ const features = [
   { label: 'Apps & Integrations',                        tiers: [false, true,  true] },
   { label: 'Desktop dialer (Mac & Windows)',             tiers: [false, true,  true] },
   { label: 'Team messenger',                             tiers: [false, true,  true] },
-  { label: 'yourcompany.telroi.ai subdomain',            tiers: [false, true,  true] },
   { label: 'AI call summaries to CRM',                   tiers: [false, true,  true] },
   { label: 'Admin controls & user management',           tiers: [false, true,  true] },
   { label: 'Priority support',                           tiers: [false, true,  true] },
@@ -375,7 +374,7 @@ const pricingFaqs = computed(() => [
   },
   {
     q: "What's the difference between Startup and Growth?",
-    a: 'Startup covers the core voice platform: AI call answering, recording and transcription, routing, numbers and full API access. Growth adds the Telroi One suite on top — CRM, Live Call, the desktop dialer, team messenger, apps and integrations, your own subdomain, AI call summaries, admin controls and priority support.'
+    a: 'Startup covers the core voice platform: AI call answering, recording and transcription, routing, numbers and full API access. Growth adds the Telroi One suite on top — CRM, Live Call, the desktop dialer, team messenger, apps and integrations, AI call summaries, admin controls and priority support.'
   },
   {
     q: 'How are voice channels, DIDs and airtime billed?',
