@@ -12,7 +12,7 @@
             {{ t('dev.lede') }}
           </p>
           <div class="dev-ctas">
-            <a href="https://app.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer" class="dev-docs-link">
+            <a href="https://developers.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer" class="dev-docs-link">
               <span>{{ t('dev.cta') }}</span> <span class="arrow">→</span>
             </a>
           </div>

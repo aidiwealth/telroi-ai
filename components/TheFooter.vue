@@ -55,12 +55,12 @@
         </div>
         <div class="foot-col">
           <h6>Developers</h6>
-          <a href="https://app.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer">API documentation</a>
-          <a href="https://app.telroi.ai/api/docs#authentication" target="_blank" rel="noopener noreferrer">Authentication</a>
-          <a href="https://app.telroi.ai/api/docs#sendVoiceOtp" target="_blank" rel="noopener noreferrer">Voice OTP</a>
-          <a href="https://app.telroi.ai/api/docs#createCall" target="_blank" rel="noopener noreferrer">Voice calls</a>
-          <a href="https://app.telroi.ai/api/docs#synthesizeSpeech" target="_blank" rel="noopener noreferrer">Speech (TTS &amp; STT)</a>
-          <a href="https://app.telroi.ai/status" target="_blank" rel="noopener noreferrer">Status</a>
+          <a href="https://developers.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer">API documentation</a>
+          <a href="https://developers.telroi.ai/api/docs#authentication" target="_blank" rel="noopener noreferrer">Authentication</a>
+          <a href="https://developers.telroi.ai/api/docs#sendVoiceOtp" target="_blank" rel="noopener noreferrer">Voice OTP</a>
+          <a href="https://developers.telroi.ai/api/docs#createCall" target="_blank" rel="noopener noreferrer">Voice calls</a>
+          <a href="https://developers.telroi.ai/api/docs#synthesizeSpeech" target="_blank" rel="noopener noreferrer">Speech (TTS &amp; STT)</a>
+          <a href="https://status.telroi.ai/status" target="_blank" rel="noopener noreferrer">Status</a>
         </div>
         <div class="foot-col">
           <h6>{{ t('foot.col.company') }}</h6>

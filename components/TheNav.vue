@@ -71,7 +71,7 @@
               <div>
                 <div class="dd-col-label">Resources</div>
 
-                <a class="dd-link" href="https://app.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer">
+                <a class="dd-link" href="https://developers.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer">
                   <span class="dd-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="9 7 4 12 9 17"/>
