@@ -28,7 +28,7 @@ const logos = [
 </script>
 
 <style scoped>
-.trust { padding: 90px 0 70px; }
+.trust { padding: 68px 0px 67px; }
 .trust-label {
   text-align: center;
   font-family: var(--font-mono);
