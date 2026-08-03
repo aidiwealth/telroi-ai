@@ -135,7 +135,11 @@ const tabs: { id: TabId; label: string }[] = [
   gap: 56px;
   align-items: stretch;
 }
-.api-left { display: flex; flex-direction: column; }
+.api-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .code-card {
   background: #0b0b0e;

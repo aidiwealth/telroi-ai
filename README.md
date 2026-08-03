@@ -183,7 +183,7 @@ All images are hosted on Cloudflare R2:
 - Brand & integration logos: `pipedrive.png`, `zoho.png`, `termii-full.png`,
   `termii-wht-2.png`, `busha.png`, `meta4.png`, `carbon-2.png`, `omnibiz.png`,
   `juicyway.png`, `sotel.png`, `Google_logo.png`, `deepgram.svg`,
-  `elevenlabs-symbol.png`, `openai.png`, `grok-logo.png`, `twilio-logo-png-transparent.png`
+  `elevenlabs-symbol.png`, `openai.png`, `grok-logo.png`, `Claude_AI_symbol.png`
 
 ## License
 

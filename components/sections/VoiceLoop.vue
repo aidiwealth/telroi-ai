@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
 .loop-step .body h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0 0 6px;
   letter-spacing: -0.02em;
 }

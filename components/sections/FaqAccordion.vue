@@ -123,7 +123,7 @@ const itemKeys = [
 .faq-aside h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 28px;
+  font-size: 25px;
   letter-spacing: -0.02em;
   margin: 24px 0 12px;
 }

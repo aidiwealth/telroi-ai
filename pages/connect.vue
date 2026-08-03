@@ -148,7 +148,7 @@ const workflowCapabilities = [
 }
 .showcase-text h2 {
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.025em;
+  font-size: clamp(28px, 3.52vw, 46px); letter-spacing: -0.025em;
   line-height: 1.05; margin: 0 0 24px;
 }
 .showcase-text h2 em { font-style: normal; color: var(--ink-soft); font-weight: 300; }

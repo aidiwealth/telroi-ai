@@ -99,7 +99,7 @@
 .dl-head h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 24px;
+  font-size: 21px;
   letter-spacing: -0.02em;
   margin: 0 0 4px;
 }

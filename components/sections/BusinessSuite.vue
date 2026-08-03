@@ -96,7 +96,7 @@ const { t } = useI18n();
 }
 
 /* Left text */
-.biz-text .sec-title { margin: 24px 0 20px; font-size: clamp(32px, 4vw, 48px); }
+.biz-text .sec-title { margin: 24px 0 20px; font-size: clamp(28px, 3.52vw, 42px); }
 .biz-text .sec-title em { font-style: normal; color: var(--signal); }
 .biz-text .sec-lede { margin: 0 0 32px; max-width: 420px; }
 
@@ -175,7 +175,7 @@ const { t } = useI18n();
 .biz-card--dialer { display: flex; flex-direction: column; gap: 14px; }
 .biz-dialer-number {
   font-family: var(--font-display);
-  font-size: 22px; letter-spacing: -0.02em;
+  font-size: 19px; letter-spacing: -0.02em;
   color: var(--ink);
 }
 .biz-dialer-status {

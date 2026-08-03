@@ -225,7 +225,7 @@ const tools = [
 .suite-card h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 26px;
+  font-size: 23px;
   letter-spacing: -0.02em;
   margin: 0 0 12px;
 }
@@ -268,7 +268,7 @@ const tools = [
 .compare-col h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 28px;
+  font-size: 25px;
   letter-spacing: -0.02em;
   margin: 0 0 16px;
   line-height: 1.2;

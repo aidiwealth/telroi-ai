@@ -110,7 +110,7 @@ withDefaults(
 .product-hero h1 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(35px, 5.28vw, 63px);
   letter-spacing: -0.03em;
   line-height: 1.04;
   margin: 0 0 24px;

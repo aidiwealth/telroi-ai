@@ -102,7 +102,7 @@ const aiProviders = [
   { name: 'ElevenLabs',      tag: 'Voice TTS',     logo: `${R2}elevenlabs-symbol.png`,         body: 'Lifelike voice generation in local languages, synthesised directly into the call audio path.' },
   { name: 'OpenAI',          tag: 'Reasoning',     logo: `${R2}openai.png`,                    body: 'GPT-class models reason over call context, drive AI agents and write back to your systems.' },
   { name: 'Grok',            tag: 'Reasoning',     logo: `${R2}grok-logo.png`,                 body: 'Grok models from xAI power call reasoning, intent handling and agent decisions across the Telroi voice path.' },
-  { name: 'Twilio',          tag: 'CPaaS',         logo: `${R2}twilio-logo-png-transparent.png`, body: 'Bridge Twilio voice services with Telroi routing for hybrid global termination and AI workflows.' },
+  { name: 'Claude',          tag: 'Reasoning',     logo: `${R2}Claude_AI_symbol.png`,          body: 'Claude models from Anthropic handle call reasoning, summarisation and structured output across long conversations.' },
   {
     name: 'Custom AI models',
     tag: 'Custom',
@@ -184,7 +184,7 @@ const aiProviders = [
 .int-divider h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3vw, 36px);
+  font-size: clamp(23px, 2.64vw, 32px);
   letter-spacing: -0.025em;
   line-height: 1.1;
   margin: 0 0 14px;

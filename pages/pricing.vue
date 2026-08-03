@@ -92,7 +92,7 @@
           </div>
           <p class="ai-note-body">
             Speech-to-text, text-to-speech and language model usage are charged from your
-            wallet as you use them, at cost plus {{ rates.aiMarkupPct }}%. The figure above is
+            wallet as you use them. The figure above is
             indicative for a typical conversational minute — your actual cost depends on how
             much your agents speak and listen.
             <strong>Bring your own provider keys and you pay those providers directly instead.</strong>
@@ -383,7 +383,7 @@ const pricingFaqs = computed(() => [
   },
   {
     q: 'Is AI usage included in the plan?',
-    a: `No — AI is billed on what you use. Speech-to-text, text-to-speech and language model calls are charged from your wallet at cost plus ${rates.value.aiMarkupPct}%, which works out to roughly ${currency.value.symbol}${formatUsage(rates.value.aiPerMinute)} for a typical conversational minute. If you would rather not go through us, connect your own provider keys and you pay those providers directly with no markup from Telroi.`
+    a: `No — AI is billed on what you use. Speech-to-text, text-to-speech and language model calls are charged from your wallet as you use them, which works out to roughly ${currency.value.symbol}${formatUsage(rates.value.aiPerMinute)} for a typical conversational minute. If you would rather not go through us, connect your own provider keys and you pay those providers directly instead.`
   },
   {
     q: 'Do you offer a free trial?',
@@ -409,7 +409,7 @@ const pricingFaqs = computed(() => [
 .pricing-head { padding: 80px 0 60px; }
 .pricing-head h1 {
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(35px, 4.4vw, 56px);
   line-height: 1.06; letter-spacing: -0.03em;
   margin: 0 0 20px; max-width: 680px;
 }
@@ -474,9 +474,9 @@ const pricingFaqs = computed(() => [
 }
 .tier-card.featured .tier-name { color: rgba(255,255,255,0.55); }
 .tier-price { display: flex; align-items: baseline; gap: 3px; }
-.tier-price .symbol { font-size: 22px; color: var(--ink-soft); }
+.tier-price .symbol { font-size: 19px; color: var(--ink-soft); }
 .tier-price .amount {
-  font-family: var(--font-display); font-size: 60px;
+  font-family: var(--font-display); font-size: 53px;
   letter-spacing: -0.04em; line-height: 1; color: var(--ink);
 }
 .tier-card.featured .tier-price .symbol,
@@ -497,7 +497,7 @@ const pricingFaqs = computed(() => [
   text-transform: uppercase; color: var(--ink-soft); margin-bottom: 20px;
 }
 .addons-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.addon-rate { font-family: var(--font-display); font-size: 22px; letter-spacing: -0.02em; color: var(--ink); }
+.addon-rate { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.02em; color: var(--ink); }
 .addon-meta { font-size: 12.5px; color: var(--ink-soft); margin-top: 4px; }
 .addon--highlight .addon-rate { color: #00a872; }
 .addon--highlight .addon-meta { color: #00a872; opacity: 0.8; }
@@ -514,7 +514,7 @@ const pricingFaqs = computed(() => [
 }
 .ai-note-head .addons-label { margin-bottom: 0; }
 .ai-note-rate {
-  font-family: var(--font-display); font-size: 22px;
+  font-family: var(--font-display); font-size: 19px;
   letter-spacing: -0.02em; color: var(--ink);
 }
 .ai-note-unit { font-family: var(--font-body); font-size: 13px; color: var(--ink-soft); letter-spacing: 0; }
@@ -590,7 +590,7 @@ const pricingFaqs = computed(() => [
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .faq-a-inner { padding: 0 36px 28px 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
 .faq-aside { position: sticky; top: 96px; }
-.faq-aside h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; letter-spacing: -0.02em; margin: 24px 0 12px; }
+.faq-aside h3 { font-family: var(--font-display); font-weight: 400; font-size: 25px; letter-spacing: -0.02em; margin: 24px 0 12px; }
 .faq-aside p { font-size: 15px; color: var(--ink-soft); margin: 0 0 24px; max-width: 320px; }
 
 @media (max-width: 960px) {

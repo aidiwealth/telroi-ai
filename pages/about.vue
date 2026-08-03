@@ -88,7 +88,7 @@ const items = [
 }
 .fn-quote-mark {
   font-family: var(--font-display);
-  font-size: 96px;
+  font-size: 84px;
   line-height: 0.6;
   color: var(--signal);
   opacity: 0.3;
@@ -98,7 +98,7 @@ const items = [
 .fn-lede {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(23px, 2.64vw, 33px);
   letter-spacing: -0.025em;
   line-height: 1.15;
   color: var(--ink);

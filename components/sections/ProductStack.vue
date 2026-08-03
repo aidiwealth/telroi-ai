@@ -144,7 +144,7 @@ const products = [
 .product-card h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 32px;
+  font-size: 28px;
   letter-spacing: -0.025em;
   margin: 0 0 16px;
 }

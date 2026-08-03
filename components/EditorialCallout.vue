@@ -31,7 +31,7 @@ defineProps<{ label: string; text: string }>();
 .editorial p {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-size: clamp(19px, 2.11vw, 28px);
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: var(--ink);

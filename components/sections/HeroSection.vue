@@ -75,14 +75,14 @@ const { t } = useI18n();
 h1.hero-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 6.2vw, 84px);
+  font-size: clamp(35px, 5.46vw, 70px);
   line-height: 0.98;
   letter-spacing: -0.035em;
   margin: 0 0 22px;
 }
 h1.hero-title em { font-style: normal; font-weight: 300; color: #a1bdd4; }
 .hero-sub {
-  font-size: clamp(16px, 1.5vw, 19px);
+  font-size: clamp(14px, 1.32vw, 17px);
   line-height: 1.55;
   color: rgba(255,255,255,0.78);
   max-width: 640px;

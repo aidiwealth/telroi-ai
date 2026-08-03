@@ -52,7 +52,7 @@ withDefaults(
 .closing h2 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 5vw, 60px);
+  font-size: clamp(27px, 3.7vw, 45px);
   letter-spacing: -0.03em;
   line-height: 1.04;
   margin: 0 0 24px;

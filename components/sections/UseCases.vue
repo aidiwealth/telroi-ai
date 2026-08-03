@@ -108,7 +108,7 @@ const useCases = [
 .uc-card h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 19px;
   letter-spacing: -0.02em;
   margin: 0 0 10px;
 }

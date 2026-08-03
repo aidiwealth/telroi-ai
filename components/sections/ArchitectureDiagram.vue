@@ -262,7 +262,7 @@
 .arch-svg :deep(.card-name) {
   fill: #fff;
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 500;
   letter-spacing: -0.015em;
 }

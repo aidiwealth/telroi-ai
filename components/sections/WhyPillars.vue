@@ -38,7 +38,7 @@ const pillars = [
 .pillar { padding: 36px 28px; border-right: 1px solid var(--rule); background: #fff; }
 .pillar:last-child { border-right: 0; }
 .p-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--ink-soft); margin-bottom: 16px; }
-.pillar h5 { font-family: var(--font-display); font-weight: 400; font-size: 20px; letter-spacing: -0.015em; margin: 0 0 10px; }
+.pillar h5 { font-family: var(--font-display); font-weight: 400; font-size: 18px; letter-spacing: -0.015em; margin: 0 0 10px; }
 .pillar p { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
 @media (max-width: 820px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } .pillar:nth-child(2) { border-right: 0; } .pillar:nth-child(3) { border-top: 1px solid var(--rule); } }
 </style>

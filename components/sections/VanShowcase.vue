@@ -316,7 +316,7 @@ onBeforeUnmount(() => {
 }
 .v-phone-num {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 25px;
   letter-spacing: -0.02em;
   margin-bottom: 6px;
 }

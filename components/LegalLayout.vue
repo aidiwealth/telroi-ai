@@ -83,7 +83,7 @@ defineProps<{
 .legal-head h1 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 5.5vw, 64px);
+  font-size: clamp(35px, 4.84vw, 56px);
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin: 0 0 18px;
@@ -189,7 +189,7 @@ defineProps<{
 .legal-section h2 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 30px;
+  font-size: 26px;
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin: 0 0 22px;
