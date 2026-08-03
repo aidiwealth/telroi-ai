@@ -4,11 +4,11 @@
       <div class="sec-head reveal">
         <div class="kicker">Telroi One</div>
         <h2 class="sec-title">
-          <span>Your whole team,</span> <em>one app to download.</em>
+          <span>Your whole team,</span> <em>one app in your pocket.</em>
         </h2>
         <p class="sec-lede">
-          Telroi One is the desktop app for your team: dialer, CRM, live call widget and AI call handling in one place.
-          Download on Mac or Windows and be live within minutes.
+          Telroi One puts the dialer, CRM, live call widget and AI call handling on your phone —
+          so your team can answer, transfer and log every call from anywhere. Coming soon to iOS and Android.
         </p>
       </div>
 
@@ -21,52 +21,42 @@
               </svg>
             </div>
             <div class="meta">
-              <h3>Telroi One for Mac</h3>
-              <div class="sub">macOS · Intel &amp; Apple Silicon</div>
+              <h3>Telroi One for iPhone</h3>
+              <div class="sub">iOS &middot; iPhone &amp; iPad</div>
             </div>
           </div>
           <ol class="dl-steps">
-            <li>Download the latest Telroi One for macOS below.</li>
-            <li>Drag Telroi One into your Applications folder.</li>
-            <li>Open Telroi One from your Mac's Applications list.</li>
-            <li>Log in with the credentials your admin set up, or contact support.</li>
+            <li>Install Telroi One from the App Store.</li>
+            <li>Log in with the credentials your admin set up.</li>
+            <li>Allow microphone and notification access so calls can reach you.</li>
+            <li>Take calls on your business number wherever you are.</li>
           </ol>
-          <a class="dl-btn" href="https://messenger.telroi.ai/communicator4/darwin_intel64/latest">
-            <span>Download Telroi One for Mac</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </a>
+          <div class="dl-btn dl-btn--soon">
+            <span>Coming soon to the App Store</span>
+          </div>
         </div>
 
         <div class="dl-card reveal reveal-delay-1">
           <div class="dl-head">
             <div class="dl-os-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 5.5L11 4.4v7.1H3V5.5zm0 13l8 1.1v-7H3v5.9zM12 4.3L22 3v8.5H12V4.3zM12 12.5h10V21l-10-1.4v-7.1z"/>
+                <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.26l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.71a.637.637 0 0 0-.83-.26c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/>
               </svg>
             </div>
             <div class="meta">
-              <h3>Telroi One for Windows</h3>
-              <div class="sub">Windows · x64</div>
+              <h3>Telroi One for Android</h3>
+              <div class="sub">Android &middot; Phone &amp; tablet</div>
             </div>
           </div>
           <ol class="dl-steps">
-            <li>Download the latest Telroi One for Windows below.</li>
-            <li>Open the .exe file and follow the installation process.</li>
-            <li>Open Telroi One from your Windows application menu.</li>
-            <li>Log in with the credentials your admin set up, or contact support.</li>
+            <li>Install Telroi One from Google Play.</li>
+            <li>Log in with the credentials your admin set up.</li>
+            <li>Allow microphone and notification access so calls can reach you.</li>
+            <li>Take calls on your business number wherever you are.</li>
           </ol>
-          <a class="dl-btn" href="https://messenger.telroi.ai/communicator4/win_x64/latest">
-            <span>Download Telroi One for Windows</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-          </a>
+          <div class="dl-btn dl-btn--soon">
+            <span>Coming soon to Google Play</span>
+          </div>
         </div>
       </div>
     </div>
@@ -163,6 +153,11 @@
   align-self: flex-start;
 }
 .dl-btn:hover { background: #000; transform: translateY(-1px); }
+.dl-btn--soon {
+  background: var(--paper-3); color: var(--ink-soft);
+  border: 1px dashed var(--rule); cursor: default;
+}
+.dl-btn--soon:hover { background: var(--paper-3); transform: none; }
 .dl-btn svg { width: 14px; height: 14px; }
 
 @media (max-width: 820px) {

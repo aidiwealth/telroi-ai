@@ -12,16 +12,16 @@
         </h1>
         <p class="lede">{{ lede }}</p>
         <div class="product-hero-ctas">
-          <!-- Download mode: Mac + Windows buttons -->
+          <!-- Download mode: iOS + Android, not yet shipped -->
           <template v-if="downloadMode">
-            <a class="btn btn-signal dl-hero-btn" href="https://messenger.telroi.ai/communicator4/darwin_intel64/latest">
+            <span class="btn btn-line dl-hero-btn is-soon">
               <svg viewBox="0 0 24 24" fill="currentColor" class="os-icon"><path d="M17.05 12.04c-.03-3.16 2.58-4.67 2.69-4.74-1.46-2.14-3.74-2.43-4.55-2.47-1.94-.2-3.78 1.14-4.77 1.14-.99 0-2.5-1.11-4.11-1.08-2.12.03-4.07 1.23-5.16 3.12-2.2 3.82-.56 9.47 1.59 12.57 1.05 1.52 2.3 3.22 3.93 3.16 1.58-.06 2.17-1.02 4.08-1.02 1.91 0 2.45 1.02 4.12 1 1.7-.03 2.78-1.55 3.82-3.07 1.2-1.76 1.69-3.47 1.71-3.56-.04-.02-3.28-1.26-3.31-5.05zM14.05 3.07c.87-1.06 1.46-2.53 1.3-4-1.25.05-2.77.83-3.67 1.89-.8.93-1.51 2.43-1.32 3.87 1.4.11 2.82-.71 3.69-1.76z"/></svg>
-              <span>Download for Mac</span>
-            </a>
-            <a class="btn btn-line dl-hero-btn" href="https://messenger.telroi.ai/communicator4/win_x64/latest">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="os-icon"><path d="M3 5.5L11 4.4v7.1H3V5.5zm0 13l8 1.1v-7H3v5.9zM12 4.3L22 3v8.5H12V4.3zM12 12.5h10V21l-10-1.4v-7.1z"/></svg>
-              <span>Download for Windows</span>
-            </a>
+              <span>iOS &mdash; coming soon</span>
+            </span>
+            <span class="btn btn-line dl-hero-btn is-soon">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="os-icon"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.26l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.71a.637.637 0 0 0-.83-.26c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+              <span>Android &mdash; coming soon</span>
+            </span>
           </template>
           <!-- Default mode: single CTA → Cal popup -->
           <template v-else>
@@ -130,6 +130,7 @@ withDefaults(
 .product-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 .dl-hero-btn { display: inline-flex; align-items: center; gap: 9px; }
 .os-icon { width: 17px; height: 17px; flex-shrink: 0; }
+.is-soon { opacity: 0.72; cursor: default; pointer-events: none; border-style: dashed; }
 
 @media (max-width: 1100px) { .product-hero { padding: 24px 56px 0; } }
 @media (max-width: 820px) {

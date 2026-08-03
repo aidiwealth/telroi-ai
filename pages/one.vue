@@ -5,7 +5,7 @@
       video-url="https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/iStock-1488638224.mp4"
       title-start="Your whole team,"
       title-em="one voice platform."
-      lede="CRM, desktop dialer, live call widget and AI voice — everything a business needs to answer every customer, in one place."
+      lede="CRM, mobile and desktop dialer, live call widget and AI voice — everything a business needs to answer every customer, in one place."
       :download-mode="true"
     />
 
@@ -100,9 +100,9 @@
               <li>VAN number provisioning</li>
               <li>SDKs and full API documentation</li>
             </ul>
-            <NuxtLink to="/connect" class="btn btn-outline">
+            <a href="https://developers.telroi.ai/api/docs" class="btn btn-outline">
               <span>Explore the API</span> <span class="arrow">→</span>
-            </NuxtLink>
+            </a>
           </div>
         </div>
       </div>
@@ -154,13 +154,13 @@ const tools = [
       <circle cx="16" cy="14" r="4"/>
       <path d="M10 21a6 6 0 0 1 12 0"/>
     </svg>`,
-    body: 'A branded desktop application for making and receiving calls from your computer. Click to call, transfer, hold — everything a team needs.',
+    body: 'A branded dialer for making and receiving calls from your phone or your desk. Click to call, transfer, hold — everything a team needs, wherever they are.',
     features: [
       'Click-to-call from any contact',
       'Inbound call handling and transfer',
       'Call recording and playback',
       'Presence and availability status',
-      'Mac and Windows support'
+      'iOS and Android apps coming soon'
     ]
   },
   {
