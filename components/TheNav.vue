@@ -260,12 +260,17 @@ const openDropdown = ref<string | null>(null);
   align-items: flex-start;
   gap: 14px;
   padding: 12px;
-  margin: -12px;
+  /* Horizontal pull only. A negative vertical margin here collapsed against the
+     next item's margin-top (4px + -12px), so the hover rectangles overlapped by
+     8px instead of sitting apart. */
+  margin: 0 -12px;
   border-radius: 10px;
   transition: background 0.15s;
 }
 .dd-link:hover { background: var(--paper-3); }
-.dd-link + .dd-link { margin-top: 4px; }
+/* Hold the first item where it sat before the vertical pull was removed. */
+.dd-col-label + .dd-link { margin-top: -12px; }
+.dd-link + .dd-link { margin-top: 6px; }
 .dd-icon {
   flex-shrink: 0;
   width: 36px; height: 36px;

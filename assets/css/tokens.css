@@ -26,9 +26,9 @@
   --signal-bright: #4d83b3;
 
   /* Typography */
-  --font-display: "Fraunces", "Times New Roman", serif;
-  --font-sans:    "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Sharp Grotesk", "Mabry Pro", Georgia, serif;
+  --font-sans:    "Mabry Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Mabry Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 
   /* Shape & motion */
   --radius:       12px;
