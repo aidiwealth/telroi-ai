@@ -8,7 +8,7 @@
       <div class="hero-content">
         <h1 class="hero-title">
           <span>{{ t('hero.title1') }}</span><br/>
-          <em>{{ t('hero.titleEm') }}</em> <span>{{ t('hero.title2') }}</span>
+          <span>{{ t('hero.titleEm') }}</span> <span>{{ t('hero.title2') }}</span>
         </h1>
         <p class="hero-sub">
           <span>{{ t('hero.sub1') }}</span><br/>

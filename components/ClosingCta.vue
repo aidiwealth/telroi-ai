@@ -3,7 +3,7 @@
     <div class="wrap">
       <h2>
         <span>{{ titleStart || t('closing.title1') }}</span><br/>
-        <em>{{ titleEm || t('closing.titleEm') }}</em>
+        <span>{{ titleEm || t('closing.titleEm') }}</span>
       </h2>
       <p>{{ body || t('closing.body') }}</p>
       <button

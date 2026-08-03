@@ -4,8 +4,7 @@
       <div class="sec-head reveal">
         <div class="kicker">Telroi One</div>
         <h2 class="sec-title">
-          <span>Your whole team,</span>
-          <em>one app to download.</em>
+          <span>Your whole team,</span> <span>one app to download.</span>
         </h2>
         <p class="sec-lede">
           Telroi One is the desktop app for your team: dialer, CRM, live call widget and AI call handling in one place.

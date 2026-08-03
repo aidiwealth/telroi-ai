@@ -1,6 +1,5 @@
 <template>
   <div>
-    <TheNotice />
     <TheNav />
     <main>
       <slot />

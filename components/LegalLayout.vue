@@ -5,8 +5,7 @@
       <div class="legal-head reveal">
         <div class="kicker">{{ kicker }}</div>
         <h1>
-          <span>{{ titleStart }}</span>
-          <em>{{ titleEm }}</em>
+          <span>{{ titleStart }}</span> <span>{{ titleEm }}</span>
         </h1>
         <p v-if="lede" class="lede">{{ lede }}</p>
       </div>

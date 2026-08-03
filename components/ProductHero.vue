@@ -8,7 +8,7 @@
         <div class="product-hero-kicker">{{ kicker }}</div>
         <h1>
           <span>{{ titleStart }}</span><br/>
-          <em>{{ titleEm }}</em>
+          <span>{{ titleEm }}</span>
         </h1>
         <p class="lede">{{ lede }}</p>
         <div class="product-hero-ctas">

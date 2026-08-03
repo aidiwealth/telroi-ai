@@ -14,7 +14,7 @@
       <div class="wrap">
         <div class="sec-head reveal">
           <div class="kicker">The suite</div>
-          <h2 class="sec-title">Everything connected. <em>Nothing missing.</em></h2>
+          <h2 class="sec-title">Everything connected. <span>Nothing missing.</span></h2>
           <p class="sec-lede">Telroi One bundles the full communications stack under one brand, one login, and one support line — built on top of the same AI-native voice infrastructure that powers our API clients.</p>
         </div>
 
@@ -39,7 +39,7 @@
       <div class="wrap">
         <div class="sec-head reveal">
           <div class="kicker">Integrations</div>
-          <h2 class="sec-title"><span>Seamless</span> <em>integrations.</em></h2>
+          <h2 class="sec-title"><span>Seamless</span> <span>integrations.</span></h2>
           <p class="sec-lede">Plug voice directly into the CRM and automation tools your team already runs. Bring your own AI on top.</p>
         </div>
 
@@ -69,7 +69,7 @@
         <div class="compare-grid reveal">
           <div class="compare-col">
             <div class="kicker">Telroi One</div>
-            <h3>For teams who need it working <em>today</em></h3>
+            <h3>For teams who need it working <span>today</span></h3>
             <p>No engineering required. Your team gets a phone system, CRM, dialer and live call widget — configured and ready. We handle the setup.</p>
             <ul class="compare-list">
               <li>Full CRM with call logging and contact management</li>
@@ -91,7 +91,7 @@
           <div class="compare-divider"/>
           <div class="compare-col">
             <div class="kicker">Telroi API</div>
-            <h3>For teams who want to <em>build on top</em></h3>
+            <h3>For teams who want to <span>build on top</span></h3>
             <p>Full programmable access to Telroi's voice infrastructure. Connect, route, optimize and extend — all via API, with your own frontend on top.</p>
             <ul class="compare-list">
               <li>Voice routing and SIP trunking</li>

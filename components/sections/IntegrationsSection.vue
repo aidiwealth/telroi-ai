@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="kicker">Integrations</div>
-        <h2 class="sec-title"><span>Seamless</span> <em>integrations.</em></h2>
+        <h2 class="sec-title"><span>Seamless</span> <span>integrations.</span></h2>
         <p class="sec-lede">Plug voice directly into the CRM and automation tools your team already runs. Bring your own AI on top.</p>
       </div>
 
@@ -28,7 +28,7 @@
       <!-- AI voice provider sub-divider -->
       <div class="int-divider reveal">
         <div class="sublabel">AI voice providers</div>
-        <h3><span>Connect your preferred</span> <em>AI voice provider.</em></h3>
+        <h3><span>Connect your preferred</span> <span>AI voice provider.</span></h3>
         <p>
           Telroi integrates with modern AI voice platforms so businesses can bring their own
           speech, reasoning and voice generation stack — while Telroi powers the voice
@@ -101,7 +101,7 @@ const aiProviders = [
   { name: 'Deepgram',        tag: 'Transcription', logo: `${R2}deepgram.svg`,                  body: "Real-time, multilingual transcription on top of Telroi's PSTN, SIP and mobile call legs." },
   { name: 'ElevenLabs',      tag: 'Voice TTS',     logo: `${R2}elevenlabs-symbol.png`,         body: 'Lifelike voice generation in local languages, synthesised directly into the call audio path.' },
   { name: 'OpenAI',          tag: 'Reasoning',     logo: `${R2}openai.png`,                    body: 'GPT-class models reason over call context, drive AI agents and write back to your systems.' },
-  { name: 'Vapi',            tag: 'Voice agents',  logo: `${R2}VAPI.png`,                      body: "Build voice agents on Vapi, then route their calls through Telroi's carrier-grade infrastructure." },
+  { name: 'Grok',            tag: 'Reasoning',     logo: `${R2}grok-logo.png`,                 body: 'Grok models from xAI power call reasoning, intent handling and agent decisions across the Telroi voice path.' },
   { name: 'Twilio',          tag: 'CPaaS',         logo: `${R2}twilio-logo-png-transparent.png`, body: 'Bridge Twilio voice services with Telroi routing for hybrid global termination and AI workflows.' },
   {
     name: 'Custom AI models',

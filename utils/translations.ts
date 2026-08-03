@@ -5,8 +5,6 @@ type Dict = Record<string, string>;
 export const translations: Record<Lang, Dict> = {
   'en-US': {
     // Notice
-    'notice': 'Telroi VAN is live — turning every business number into an intelligent assistant.',
-    'notice.link': 'Read more',
 
     // Nav
     'nav.whyTelroi': 'Why Telroi?',
@@ -135,7 +133,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5': 'Does Telroi support white-label deployments?',
     'faq.a5': 'Yes. Partners can white-label Telroi solutions, offering voice services under their own brand with full API and infrastructure access.',
     'faq.q6': 'What kind of AI does Telroi provide?',
-    'faq.a6': 'Telroi\'s AI operates at two layers. At the network level: route scoring, fraud detection and traffic anomaly monitoring via Telroi Optimize. For conversational AI, Telroi is model-agnostic: connect Google, Deepgram, ElevenLabs, OpenAI, Vapi, or your own models. We power the voice infrastructure; you choose the intelligence on top.',
+    'faq.a6': 'Telroi\'s AI operates at two layers. At the network level: route scoring, fraud detection and traffic anomaly monitoring via Telroi Optimize. For conversational AI, Telroi is model-agnostic: connect Google, Deepgram, ElevenLabs, OpenAI, Grok, or your own models. We power the voice infrastructure; you choose the intelligence on top.',
     'faq.q7': 'How do I get started with Telroi?',
     'faq.a7': 'Reach out to our team at support@telroi.ai or book a demo at telroi.ai. Sandbox keys are available for API testing, no credit card required.',
 
@@ -167,8 +165,6 @@ export const translations: Record<Lang, Dict> = {
   },
 
   'en-GB': {
-    'notice': 'Telroi VAN is live — turning every business number into an intelligent assistant.',
-    'notice.link': 'Read more',
     'nav.whyTelroi': 'Why Telroi?',
     'nav.dd.col.products': 'Products',
     'nav.dd.col.resources': 'Resources',
@@ -277,7 +273,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5': 'Does Telroi support white-label deployments?',
     'faq.a5': 'Yes. Partners can white-label Telroi solutions, offering voice services under their own brand with full API and infrastructure access.',
     'faq.q6': 'What kind of AI does Telroi provide?',
-    'faq.a6': 'Telroi\'s AI operates at two layers. At the network level: route scoring, fraud detection and traffic anomaly monitoring via Telroi Optimize. For conversational AI, Telroi is model-agnostic: connect Google, Deepgram, ElevenLabs, OpenAI, Vapi, or your own models. We power the voice infrastructure; you choose the intelligence on top.',
+    'faq.a6': 'Telroi\'s AI operates at two layers. At the network level: route scoring, fraud detection and traffic anomaly monitoring via Telroi Optimize. For conversational AI, Telroi is model-agnostic: connect Google, Deepgram, ElevenLabs, OpenAI, Grok, or your own models. We power the voice infrastructure; you choose the intelligence on top.',
     'faq.q7': 'How do I get started with Telroi?',
     'faq.a7': 'Reach out to our team at support@telroi.ai or book a demo at telroi.ai. Sandbox keys are available for API testing, no credit card required.',
     'closing.title1': 'Voice infrastructure for',
@@ -303,8 +299,6 @@ export const translations: Record<Lang, Dict> = {
   },
 
   'es-ES': {
-    'notice': 'Telroi VAN está activo: convierte cada número de negocio en un asistente inteligente.',
-    'notice.link': 'Leer más',
     'nav.whyTelroi': '¿Por qué Telroi?',
     'nav.dd.col.products': 'Productos',
     'nav.dd.col.resources': 'Recursos',
@@ -413,7 +407,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5': '¿Telroi soporta despliegues de marca blanca?',
     'faq.a5': 'Sí. Los socios pueden poner su marca en las soluciones Telroi, ofreciendo servicios de voz bajo su propia marca con acceso completo a la API e infraestructura.',
     'faq.q6': '¿Qué tipo de IA proporciona Telroi?',
-    'faq.a6': 'La IA de Telroi opera en dos capas. A nivel de red: puntuación de rutas, detección de fraude, monitoreo de anomalías de tráfico y calidad predictiva de llamadas via Telroi Optimize. Para IA conversacional, Telroi es agnóstico al modelo: conecta Google, Deepgram, ElevenLabs, OpenAI, Vapi o tus propios modelos.',
+    'faq.a6': 'La IA de Telroi opera en dos capas. A nivel de red: puntuación de rutas, detección de fraude, monitoreo de anomalías de tráfico y calidad predictiva de llamadas via Telroi Optimize. Para IA conversacional, Telroi es agnóstico al modelo: conecta Google, Deepgram, ElevenLabs, OpenAI, Grok o tus propios modelos.',
     'faq.q7': '¿Cómo empiezo con Telroi?',
     'faq.a7': 'Contacta a nuestro equipo en support@telroi.ai o reserva una demo en telroi.ai. Las claves sandbox están disponibles para pruebas de API, sin tarjeta de crédito.',
     'closing.title1': 'Infraestructura de voz para',
@@ -439,8 +433,6 @@ export const translations: Record<Lang, Dict> = {
   },
 
   'fr-FR': {
-    'notice': 'Telroi VAN est en ligne — transformant chaque numéro professionnel en assistant intelligent.',
-    'notice.link': 'En savoir plus',
     'nav.whyTelroi': 'Pourquoi Telroi ?',
     'nav.dd.col.products': 'Produits',
     'nav.dd.col.resources': 'Ressources',
@@ -549,7 +541,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5': 'Telroi supporte-t-il les déploiements en marque blanche ?',
     'faq.a5': 'Oui. Les partenaires peuvent mettre leur marque sur les solutions Telroi, offrant des services vocaux sous leur propre marque avec un accès complet à l\'API et à l\'infrastructure.',
     'faq.q6': 'Quel type d\'IA Telroi fournit-il ?',
-    'faq.a6': 'L\'IA de Telroi fonctionne sur deux couches. Au niveau réseau : scoring de routes, détection de fraude, surveillance des anomalies de trafic et qualité prédictive des appels via Telroi Optimize. Pour l\'IA conversationnelle, Telroi est agnostique au modèle : connectez Google, Deepgram, ElevenLabs, OpenAI, Vapi ou vos propres modèles.',
+    'faq.a6': 'L\'IA de Telroi fonctionne sur deux couches. Au niveau réseau : scoring de routes, détection de fraude, surveillance des anomalies de trafic et qualité prédictive des appels via Telroi Optimize. Pour l\'IA conversationnelle, Telroi est agnostique au modèle : connectez Google, Deepgram, ElevenLabs, OpenAI, Grok ou vos propres modèles.',
     'faq.q7': 'Comment démarrer avec Telroi ?',
     'faq.a7': 'Contactez notre équipe à support@telroi.ai ou réservez une démo sur telroi.ai. Les clés sandbox sont disponibles pour les tests API, sans carte de crédit.',
     'closing.title1': 'Infrastructure vocale pour',

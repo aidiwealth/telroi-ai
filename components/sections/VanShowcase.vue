@@ -6,8 +6,7 @@
         <div class="van-content reveal">
           <div class="kicker">Telroi VAN</div>
           <h2 class="sec-title">
-            <span>Every business number,</span>
-            <em>now AI-powered.</em>
+            <span>Every business number,</span> <span>now AI-powered.</span>
           </h2>
           <p class="sec-lede">Answer every call. In any language.</p>
 

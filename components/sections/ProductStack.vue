@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="kicker">The Stack</div>
-        <h2 class="sec-title">Four products. <em>One voice layer.</em></h2>
+        <h2 class="sec-title">Four products. <span>One voice layer.</span></h2>
         <p class="sec-lede">
           From SIP trunks and programmable voice workflows to AI-native numbers and a full business communications suite —
           Telroi gives every team the infrastructure to build voice systems that hold up in the real world.

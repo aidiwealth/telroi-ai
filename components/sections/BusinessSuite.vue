@@ -5,7 +5,7 @@
         <div class="biz-text reveal">
           <div class="kicker">{{ t('biz.kicker') }}</div>
           <h2 class="sec-title">
-            {{ t('biz.title') }}<br/><em>{{ t('biz.titleEm') }}</em>
+            {{ t('biz.title') }}<br/><span>{{ t('biz.titleEm') }}</span>
           </h2>
           <p class="sec-lede">
             {{ t('biz.lede') }}
