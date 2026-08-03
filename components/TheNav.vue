@@ -140,7 +140,7 @@
       </nav>
 
       <div class="nav-cta">
-        <a href="https://app.telroi.ai" class="nav-signin">{{ t('nav.signin') }}</a>
+        <a href="https://app.telroi.ai/login" class="nav-signin">{{ t('nav.signin') }}</a>
         <button
           type="button"
           class="btn btn-dark"

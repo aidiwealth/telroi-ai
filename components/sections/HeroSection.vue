@@ -15,7 +15,7 @@
           <span>{{ t('hero.sub2') }}</span>
         </p>
         <div class="hero-ctas">
-          <a href="https://app.telroi.ai" class="btn btn-signal">
+          <a href="https://app.telroi.ai/login?mode=signup" class="btn btn-signal">
             <span>{{ t('hero.cta1') }}</span> <span class="arrow">→</span>
           </a>
           <button

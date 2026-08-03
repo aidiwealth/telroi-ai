@@ -5,7 +5,7 @@
       <div class="wrap">
         <div class="kicker reveal">Pricing</div>
         <h1 class="reveal">Simple, transparent <em>pricing.</em></h1>
-        <p class="lede reveal">No hidden fees. Per-user plans for Telroi One, usage-based rates for voice infrastructure. Scale as you grow.</p>
+        <p class="lede reveal">One plan fee per workspace, plus usage-based rates for voice infrastructure. Every plan starts with a 7-day trial.</p>
 
         <!-- Currency switcher -->
         <div class="currency-switcher reveal">
@@ -14,7 +14,7 @@
             :key="c.code"
             class="currency-btn"
             :class="{ active: currency.code === c.code }"
-            @click="currency = c"
+            @click="currencyCode = c.code"
             type="button"
           >
             <span class="currency-flag">{{ c.flag }}</span>
@@ -52,7 +52,7 @@
             >
               <span>{{ tier.cta }}</span> <span class="arrow">→</span>
             </button>
-            <a v-else href="https://app.telroi.ai" class="btn" :class="tier.featured ? 'btn-signal' : 'btn-dark'">
+            <a v-else href="https://app.telroi.ai/login?mode=signup" class="btn" :class="tier.featured ? 'btn-signal' : 'btn-dark'">
               <span>{{ tier.cta }}</span> <span class="arrow">→</span>
             </a>
             <div class="tier-fine">{{ tier.fine }}</div>
@@ -64,20 +64,55 @@
           <div class="addons-label">Same usage rates on every plan</div>
           <div class="addons-grid">
             <div class="addon">
-              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(2.00) }}</div>
+              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.channelMonthly) }}</div>
               <div class="addon-meta">per voice channel / month</div>
             </div>
             <div class="addon">
-              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(1.70) }}</div>
+              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.numberMonthly) }}</div>
               <div class="addon-meta">per DID number / month</div>
             </div>
             <div class="addon">
-              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(0.0102) }}</div>
+              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.voiceMinute) }}</div>
               <div class="addon-meta">per minute of airtime</div>
             </div>
             <div class="addon addon--highlight">
               <div class="addon-rate">Included</div>
               <div class="addon-meta">Telroi Optimize — on all plans</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI usage — billed from wallet, not bundled into the plan fee -->
+        <div class="ai-note reveal">
+          <div class="ai-note-head">
+            <div class="addons-label">AI usage — billed separately</div>
+            <div class="ai-note-rate">
+              ~{{ currency.symbol }}{{ formatUsage(rates.aiPerMinute) }}<span class="ai-note-unit"> / minute</span>
+            </div>
+          </div>
+          <p class="ai-note-body">
+            Speech-to-text, text-to-speech and language model usage are charged from your
+            wallet as you use them, at cost plus {{ rates.aiMarkupPct }}%. The figure above is
+            indicative for a typical conversational minute — your actual cost depends on how
+            much your agents speak and listen.
+            <strong>Bring your own provider keys and you pay those providers directly instead.</strong>
+          </p>
+          <div class="ai-units">
+            <div class="ai-unit">
+              <span class="ai-unit-rate">{{ currency.symbol }}{{ formatUsage(rates.aiSttPerMinute) }}</span>
+              <span class="ai-unit-meta">speech-to-text / minute</span>
+            </div>
+            <div class="ai-unit">
+              <span class="ai-unit-rate">{{ currency.symbol }}{{ formatUsage(rates.aiTtsPerMillionChars, 0) }}</span>
+              <span class="ai-unit-meta">text-to-speech / 1M characters</span>
+            </div>
+            <div class="ai-unit">
+              <span class="ai-unit-rate">{{ currency.symbol }}{{ formatUsage(rates.aiLlmInPerMillionTokens) }}</span>
+              <span class="ai-unit-meta">model input / 1M tokens</span>
+            </div>
+            <div class="ai-unit">
+              <span class="ai-unit-rate">{{ currency.symbol }}{{ formatUsage(rates.aiLlmOutPerMillionTokens) }}</span>
+              <span class="ai-unit-meta">model output / 1M tokens</span>
             </div>
           </div>
         </div>
@@ -171,118 +206,202 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 useHead({
   title: 'Telroi — Pricing',
-  meta: [{ name: 'description', content: 'Telroi pricing — per-user plans for Telroi One starting at $10, with usage-based rates for voice channels, numbers and airtime.' }]
+  meta: [{ name: 'description', content: 'Telroi pricing — workspace plans for Telroi One from $10/month, with usage-based rates for voice channels, numbers, airtime and AI.' }]
 });
 
 const openFaq = ref<number | null>(0);
 
-const currencies = [
-  { code: 'USD', symbol: '$',  flag: '🇺🇸', rate: 1 },
-  { code: 'NGN', symbol: '₦', flag: '🇳🇬', rate: 1600 },
-];
-const currency = ref(currencies[0]);
+// ── Live pricing ────────────────────────────────────────────────────────────
+// Read from the platform's public pricing endpoint so this page can't drift from
+// what we actually charge. The site is prerendered, so this resolves at build
+// time and ships as static values; the fallback below keeps the build green if
+// the endpoint is unreachable. Keep the fallback in step with the platform
+// defaults in server/utils/pricing.ts.
+const FALLBACK = {
+  ngnPerUsd: 1600,
+  plans: { startup: { usdMinor: 1000 }, growth: { usdMinor: 1500 } },
+  usage: { channelMonthly: { usdMinor: 200 }, numberMonthly: { usdMinor: 170 } },
+  ai: {
+    markupPct: 25,
+    units: {
+      sttPerSecond: { usdNano: 100000 },
+      ttsPerCharacter: { usdNano: 15000 },
+      llmInputPerToken: { usdNano: 800 },
+      llmOutputPerToken: { usdNano: 4000 }
+    },
+    indicativePerMinute: { usdNano: 15362500 }
+  }
+};
+
+const { data: remote } = await useAsyncData('public-pricing', async () => {
+  try {
+    return await $fetch<any>('https://app.telroi.ai/public/pricing', { timeout: 6000 });
+  } catch (e) {
+    // Loud on purpose: without this a build that can't reach the endpoint still
+    // goes green and ships the FALLBACK figures, and a wrong-price deploy looks
+    // exactly like a correct one in the log.
+    console.warn('[pricing] /public/pricing unreachable at build — using FALLBACK', e);
+    return null;
+  }
+}, { default: () => null });
+
+const api = computed<any>(() => remote.value || FALLBACK);
+
+// Airtime is deliberately NOT read from the endpoint. Call billing charges
+// $0.0102/min (VOICE_MICRO_USD_PER_MIN in server/utils/pricing.ts), but the
+// endpoint reports voiceMinute from a whole-cent column that can only say
+// $0.01. Until the platform can express sub-cent airtime, quoting the endpoint
+// here would advertise less than we charge.
+const VOICE_USD_PER_MIN = 0.0102;
+
+const minor = (v: any) => (Number(v?.usdMinor) || 0) / 100;
+const nano = (v: any) => (Number(v?.usdNano) || 0) / 1e9;
+
+const rates = computed(() => {
+  const a = api.value;
+  return {
+    startup: minor(a.plans?.startup),
+    growth: minor(a.plans?.growth),
+    channelMonthly: minor(a.usage?.channelMonthly),
+    numberMonthly: minor(a.usage?.numberMonthly),
+    voiceMinute: VOICE_USD_PER_MIN,
+    aiMarkupPct: Number(a.ai?.markupPct) || 0,
+    aiPerMinute: nano(a.ai?.indicativePerMinute),
+    aiSttPerMinute: nano(a.ai?.units?.sttPerSecond) * 60,
+    aiTtsPerMillionChars: nano(a.ai?.units?.ttsPerCharacter) * 1e6,
+    aiLlmInPerMillionTokens: nano(a.ai?.units?.llmInputPerToken) * 1e6,
+    aiLlmOutPerMillionTokens: nano(a.ai?.units?.llmOutputPerToken) * 1e6
+  };
+});
+
+// ── Currency ────────────────────────────────────────────────────────────────
+// The naira rate is the platform's own ngnPerUsd, not a number kept by hand, so
+// the two stay in step when finance moves it.
+const currencies = computed(() => [
+  { code: 'USD', symbol: '$', flag: '🇺🇸', rate: 1 },
+  { code: 'NGN', symbol: '₦', flag: '🇳🇬', rate: Number(api.value.ngnPerUsd) || 1600 }
+]);
+const currencyCode = ref('USD');
+const currency = computed(() => currencies.value.find((c) => c.code === currencyCode.value) || currencies.value[0]);
 
 function formatPrice(usd: number): string {
-  const val = Math.round(usd * currency.value.rate);
-  return currency.value.code === 'NGN'
-    ? val.toLocaleString()
-    : String(usd);
+  if (currency.value.code === 'NGN') return Math.round(usd * currency.value.rate).toLocaleString();
+  return Number.isInteger(usd) ? String(usd) : usd.toFixed(2);
 }
 
-function formatUsage(usd: number): string {
-  const val = usd * currency.value.rate;
+function formatUsage(usd: number, usdDecimals?: number): string {
   if (currency.value.code === 'NGN') {
-    return val >= 1 ? val.toLocaleString('en-NG', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
-                    : val.toFixed(2);
+    const v = usd * currency.value.rate;
+    // Small naira amounts lose their meaning when rounded to whole naira —
+    // airtime at ₦16.32 a minute reads as ₦16 and understates the rate.
+    return v >= 100 ? Math.round(v).toLocaleString() : v.toFixed(2);
   }
-  return usd === 0.0102 ? '0.0102' : usd.toFixed(2);
+  if (usdDecimals !== undefined) return usd.toFixed(usdDecimals);
+  if (usd >= 1) return usd.toFixed(2);
+  const trimmed = usd.toFixed(4).replace(/0+$/, '');
+  return trimmed.length - trimmed.indexOf('.') <= 2 ? usd.toFixed(2) : trimmed.replace(/\.$/, '');
 }
 
-const tiers = [
+// ── Plans ───────────────────────────────────────────────────────────────────
+// The plan fee is charged once per workspace. There is no per-seat billing on
+// the platform, and no volume tier that changes the rate by headcount.
+const tiers = computed(() => [
   {
     name: 'Startup',
-    usd: 10,
-    period: 'Per user per month',
-    fine: 'Billed at $7 per user above 10 users.',
-    cta: 'Get started',
+    usd: rates.value.startup,
+    price: '',
+    period: 'Per workspace, per month',
+    fine: 'Core voice, AI answering and full API access. 7-day trial included.',
+    cta: 'Start building',
     featured: false
   },
   {
     name: 'Growth',
-    usd: 15,
-    period: 'Per user per month',
-    fine: 'Billed at $11 per user above 10 users.',
-    cta: 'Get started',
+    usd: rates.value.growth,
+    price: '',
+    period: 'Per workspace, per month',
+    fine: 'Everything in Startup plus the full Telroi One suite. 7-day trial included.',
+    cta: 'Start building',
     featured: true
   },
   {
     name: 'Custom',
     usd: 0,
+    price: 'Custom',
     period: 'For large, regulated or white-label teams',
     fine: 'Dedicated subdomain, compliance support and custom onboarding.',
     cta: 'Talk to sales',
     featured: false
   }
-];
+]);
 
-// features: tiers array = [Startup, Growth, Custom]
+// Mirrors DEFAULT_FEATURES in the platform's server/utils/entitlements.ts, which
+// is what actually gates access. Changing a row here without changing it there
+// promises something the product will refuse to do.
+// tiers array = [Startup, Growth, Custom]
 const features = [
-  // ── All three plans ──────────────────────────────────────
-  { label: 'AI call answering (VAN)',               tiers: [true,  true,  true]  },
-  { label: 'Call recording & transcription',        tiers: [true,  true,  true]  },
-  { label: 'Webhooks & API access',                 tiers: [true,  true,  true]  },
-  { label: 'Route scoring & fraud detection',       tiers: [true,  true,  true]  },
-  { label: 'CLI-compliant voice routing',           tiers: [true,  true,  true]  },
-  { label: 'DID number provisioning',               tiers: [true,  true,  true]  },
-  { label: 'Multi-language AI support',             tiers: [true,  true,  true]  },
-  // ── Growth & Custom only ─────────────────────────────────
-  { label: 'Telroi CRM — contacts, deals, call logs', tiers: [false, true,  true], sectionBreak: true  },
-  { label: 'Desktop dialer (Mac & Windows)',        tiers: [false, true,  true]  },
-  { label: 'Live Call — website call widget',       tiers: [false, true,  true]  },
-  { label: 'yourcompany.telroi.ai subdomain',      tiers: [false, true,  true]  },
-  { label: 'AI call summaries to CRM',              tiers: [false, true,  true]  },
-  { label: 'Admin controls & user management',      tiers: [false, true,  true]  },
-  { label: 'Priority support',                      tiers: [false, true,  true]  },
+  // ── Core voice — all three plans ─────────────────────────
+  { label: 'AI call answering (VAN)',                    tiers: [true,  true,  true] },
+  { label: 'Call recording & transcription',             tiers: [true,  true,  true] },
+  { label: 'Webhooks & API access',                      tiers: [true,  true,  true] },
+  { label: 'Route scoring & fraud detection',            tiers: [true,  true,  true] },
+  { label: 'CLI-compliant voice routing',                tiers: [true,  true,  true] },
+  { label: 'DID number provisioning',                    tiers: [true,  true,  true] },
+  { label: 'Multi-language AI support',                  tiers: [true,  true,  true] },
+  // ── Telroi One suite — Growth & Custom ───────────────────
+  { label: 'Telroi CRM — contacts, deals, call logs',    tiers: [false, true,  true], sectionBreak: true },
+  { label: 'Live Call — website & app call widget',      tiers: [false, true,  true] },
+  { label: 'Apps & Integrations',                        tiers: [false, true,  true] },
+  { label: 'Desktop dialer (Mac & Windows)',             tiers: [false, true,  true] },
+  { label: 'Team messenger',                             tiers: [false, true,  true] },
+  { label: 'yourcompany.telroi.ai subdomain',            tiers: [false, true,  true] },
+  { label: 'AI call summaries to CRM',                   tiers: [false, true,  true] },
+  { label: 'Admin controls & user management',           tiers: [false, true,  true] },
+  { label: 'Priority support',                           tiers: [false, true,  true] },
   // ── Custom only ──────────────────────────────────────────
-  { label: 'Custom onboarding',                     tiers: [false, false, true], sectionBreak: true  },
-  { label: 'Dedicated compliance support',          tiers: [false, false, true]  },
-  { label: 'White-label & on-prem options',         tiers: [false, false, true]  },
+  { label: 'Custom onboarding',                          tiers: [false, false, true], sectionBreak: true },
+  { label: 'Dedicated compliance support',               tiers: [false, false, true] },
+  { label: 'White-label & on-prem options',              tiers: [false, false, true] }
 ];
 
-const pricingFaqs = [
+const pricingFaqs = computed(() => [
   {
-    q: 'What does "per user" mean?',
-    a: 'A user is anyone on your team with a Telroi One seat — agents, supervisors, admins with access to the CRM, dialer, or Live Call widget. API-only usage via Telroi Connect is not seat-based; it is billed by usage (channels, DIDs, airtime).'
-  },
-  {
-    q: 'How are voice channels, DIDs and airtime billed?',
-    a: "These usage-based charges apply across every plan: $2 per voice channel per month, $1.70 per DID number per month, and $0.0102 per minute of airtime. You're never charged for unused capacity."
-  },
-  {
-    q: 'Can I switch plans later?',
-    a: 'Yes. You can upgrade or downgrade at any time. Plan changes prorate to the day, so you only pay for the time on each plan.'
+    q: 'Is the plan fee per user?',
+    a: 'No. The plan fee is charged once per workspace, however many people you add. What scales with your usage is the voice infrastructure underneath it — channels, numbers, airtime and AI — which is billed on what you actually consume.'
   },
   {
     q: "What's the difference between Startup and Growth?",
-    a: 'Both plans include the full Telroi One suite and API access — there is no feature gating. Growth includes a higher service tier, priority support response times, and is recommended for teams that depend on voice as a primary channel.'
+    a: 'Startup covers the core voice platform: AI call answering, recording and transcription, routing, numbers and full API access. Growth adds the Telroi One suite on top — CRM, Live Call, the desktop dialer, team messenger, apps and integrations, your own subdomain, AI call summaries, admin controls and priority support.'
+  },
+  {
+    q: 'How are voice channels, DIDs and airtime billed?',
+    a: `These usage rates are the same on every plan: ${currency.value.symbol}${formatUsage(rates.value.channelMonthly)} per voice channel per month, ${currency.value.symbol}${formatUsage(rates.value.numberMonthly)} per DID number per month, and ${currency.value.symbol}${formatUsage(rates.value.voiceMinute)} per minute of airtime. Number and channel fees run on a 30-day cycle from the day each number is provisioned. Partial minutes of airtime are rounded up.`
+  },
+  {
+    q: 'Is AI usage included in the plan?',
+    a: `No — AI is billed on what you use. Speech-to-text, text-to-speech and language model calls are charged from your wallet at cost plus ${rates.value.aiMarkupPct}%, which works out to roughly ${currency.value.symbol}${formatUsage(rates.value.aiPerMinute)} for a typical conversational minute. If you would rather not go through us, connect your own provider keys and you pay those providers directly with no markup from Telroi.`
+  },
+  {
+    q: 'Do you offer a free trial?',
+    a: 'Yes. Both Startup and Growth begin with a 7-day trial of the plan you pick, self-serve at signup. We collect a card up front but charge nothing until the trial ends. If you do nothing, the workspace drops to Startup rather than switching off. Sandbox API keys for testing Telroi Connect are free and need no card at all.'
+  },
+  {
+    q: 'Can I switch plans later?',
+    a: 'Yes, from your workspace settings, and the change takes effect immediately. Switching to a paid plan ends any trial you are on. Because plan fees are debited from your wallet on a monthly anchor rather than invoiced in arrears, it is worth switching close to your billing date if you want to get the most out of the month you have already paid for.'
   },
   {
     q: 'When should I pick the Custom plan?',
-    a: 'Custom is for regulated industries (banks, healthcare), high-volume API deployments, white-label partners, and teams with specific compliance or data residency requirements. Our team scopes pricing based on your specific footprint.'
-  },
-  {
-    q: 'Do you offer a free trial or sandbox?',
-    a: "Yes. Sandbox API keys are free for testing Telroi Connect — no credit card required. For Telroi One, talk to our team and we'll provision a trial account within a day."
+    a: 'Custom is for regulated industries, high-volume API deployments, white-label partners, and teams with specific compliance or data residency requirements. Pricing is quoted against your footprint rather than listed here, so talk to our team.'
   },
   {
     q: 'How do I pay?',
-    a: 'We accept all major credit cards, ACH transfers, and wire transfers. Plan fees are invoiced monthly in advance; usage-based charges are billed monthly in arrears. Annual prepay options are available with a discount.'
+    a: 'Telroi runs on a prepaid wallet. You top it up by card or bank transfer — Stripe for USD accounts, Paystack and Monnify for naira accounts, including a dedicated virtual account for transfers — and plan fees, number and channel fees, airtime and AI usage are all debited from that balance. Keeping a working balance matters: if a number subscription comes due against a wallet that cannot cover it, that number is suspended rather than overdrawn.'
   }
-];
+]);
 </script>
 
 <style scoped>
@@ -382,6 +501,40 @@ const pricingFaqs = [
 .addon-meta { font-size: 12.5px; color: var(--ink-soft); margin-top: 4px; }
 .addon--highlight .addon-rate { color: #00a872; }
 .addon--highlight .addon-meta { color: #00a872; opacity: 0.8; }
+
+/* ============ AI usage note ============ */
+.ai-note {
+  margin-top: 20px; padding: 28px 32px;
+  background: #fff; border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+}
+.ai-note-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.ai-note-head .addons-label { margin-bottom: 0; }
+.ai-note-rate {
+  font-family: var(--font-display); font-size: 22px;
+  letter-spacing: -0.02em; color: var(--ink);
+}
+.ai-note-unit { font-family: var(--font-body); font-size: 13px; color: var(--ink-soft); letter-spacing: 0; }
+.ai-note-body {
+  font-size: 14px; line-height: 1.6; color: var(--ink-soft);
+  margin: 0 0 22px; max-width: 720px;
+}
+.ai-note-body strong { color: var(--ink); font-weight: 500; }
+.ai-units {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  padding-top: 20px; border-top: 1px solid var(--rule-2);
+}
+.ai-unit { display: flex; flex-direction: column; gap: 3px; }
+.ai-unit-rate { font-family: var(--font-mono); font-size: 14px; color: var(--ink); }
+.ai-unit-meta { font-size: 12px; color: var(--ink-soft); }
+
+@media (max-width: 700px) {
+  .ai-units { grid-template-columns: repeat(2, 1fr); }
+  .ai-note { padding: 24px 20px; }
+}
 
 /* ============ Feature matrix ============ */
 .features-section { padding: 80px 0 100px; background: var(--paper-2); }

@@ -37,7 +37,7 @@ withDefaults(
     calPopup?: boolean;
   }>(),
   {
-    ctaHref: 'https://app.telroi.ai',
+    ctaHref: 'https://app.telroi.ai/login?mode=signup',
     anchorId: 'contact',
     calPopup: false
   }

@@ -76,7 +76,9 @@ export default defineNuxtConfig({
             "font-src 'self' https://fonts.gstatic.com",
             "img-src 'self' data: https://pub-f138f42d66b748108ebf7432c7314665.r2.dev",
             "media-src 'self' https://pub-f138f42d66b748108ebf7432c7314665.r2.dev",
-            "connect-src 'self' https://app.cal.com https://api.telroi.ai",
+            // app.telroi.ai is needed for GET /public/pricing — the pricing page
+            // reads live rates from it rather than hard-coding figures that drift.
+            "connect-src 'self' https://app.cal.com https://api.telroi.ai https://app.telroi.ai",
             "frame-src https://app.cal.com",
             "object-src 'none'",
             "base-uri 'self'"
