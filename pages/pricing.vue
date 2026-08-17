@@ -75,6 +75,10 @@
               <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.voiceMinute) }}</div>
               <div class="addon-meta">per minute of airtime</div>
             </div>
+            <div class="addon">
+              <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.voiceOtpCall) }}</div>
+              <div class="addon-meta">per voice OTP call</div>
+            </div>
             <div class="addon addon--highlight">
               <div class="addon-rate">Included</div>
               <div class="addon-meta">Telroi Optimize — on all plans</div>
@@ -224,7 +228,11 @@ const openFaq = ref<number | null>(0);
 const FALLBACK = {
   ngnPerUsd: 1600,
   plans: { startup: { usdMinor: 1000 }, growth: { usdMinor: 1500 } },
-  usage: { channelMonthly: { usdMinor: 200 }, numberMonthly: { usdMinor: 170 } },
+  usage: {
+    channelMonthly: { usdMinor: 200 },
+    numberMonthly: { usdMinor: 170 },
+    voiceOtpCall: { usdNano: 10000000 }
+  },
   ai: {
     markupPct: 25,
     units: {
@@ -268,6 +276,7 @@ const rates = computed(() => {
     growth: minor(a.plans?.growth),
     channelMonthly: minor(a.usage?.channelMonthly),
     numberMonthly: minor(a.usage?.numberMonthly),
+    voiceOtpCall: nano(a.usage?.voiceOtpCall),
     voiceMinute: VOICE_USD_PER_MIN,
     aiMarkupPct: Number(a.ai?.markupPct) || 0,
     aiPerMinute: nano(a.ai?.indicativePerMinute),
@@ -378,7 +387,7 @@ const pricingFaqs = computed(() => [
   },
   {
     q: 'How are voice channels, DIDs and airtime billed?',
-    a: `These usage rates are the same on every plan: ${currency.value.symbol}${formatUsage(rates.value.channelMonthly)} per voice channel per month, ${currency.value.symbol}${formatUsage(rates.value.numberMonthly)} per DID number per month, and ${currency.value.symbol}${formatUsage(rates.value.voiceMinute)} per minute of airtime. Number and channel fees run on a 30-day cycle from the day each number is provisioned. Partial minutes of airtime are rounded up.`
+    a: `These usage rates are the same on every plan: ${currency.value.symbol}${formatUsage(rates.value.channelMonthly)} per voice channel per month, ${currency.value.symbol}${formatUsage(rates.value.numberMonthly)} per DID number per month, and ${currency.value.symbol}${formatUsage(rates.value.voiceMinute)} per minute of airtime. Number and channel fees run on a 30-day cycle from the day each number is provisioned. Partial minutes of airtime are rounded up. Voice OTP calls are the exception: they are charged a flat ${currency.value.symbol}${formatUsage(rates.value.voiceOtpCall)} per call regardless of how long the call runs, because a delivered code takes seconds rather than minutes.`
   },
   {
     q: 'Is AI usage included in the plan?',
