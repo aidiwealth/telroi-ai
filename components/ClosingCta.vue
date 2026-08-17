@@ -1,5 +1,5 @@
 <template>
-  <section class="closing" :id="anchorId">
+  <section class="closing" :class="{ 'closing--tinted': tinted }" :id="anchorId">
     <div class="wrap">
       <h2>
         <span>{{ titleStart || t('closing.title1') }}</span><br/>
@@ -35,9 +35,12 @@ withDefaults(
     ctaHref?: string;
     anchorId?: string;
     calPopup?: boolean;
+    tinted?: boolean;
   }>(),
   {
     ctaHref: 'https://app.telroi.ai/login?mode=signup',
+    // Product pages set their closing band apart from the section above it.
+    tinted: false,
     anchorId: 'contact',
     calPopup: false
   }
@@ -49,6 +52,7 @@ withDefaults(
   padding: 140px 0 120px;
   text-align: center;
 }
+.closing--tinted { background: var(--paper-2); }
 .closing h2 {
   font-family: var(--font-display);
   font-weight: 400;

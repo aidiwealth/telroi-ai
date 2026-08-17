@@ -10,7 +10,11 @@
           <span>{{ titleStart }}</span><br/>
           <em>{{ titleEm }}</em>
         </h1>
-        <p class="lede">{{ lede }}</p>
+        <p class="lede">
+          <template v-for="(line, i) in ledeLines" :key="i">
+            <br v-if="i"/>{{ line }}
+          </template>
+        </p>
         <div class="product-hero-ctas">
           <!-- Download mode: iOS + Android, not yet shipped -->
           <template v-if="downloadMode">
@@ -42,7 +46,8 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
+import { computed } from 'vue';
+const props = withDefaults(
   defineProps<{
     kicker: string;
     titleStart: string;
@@ -58,6 +63,11 @@ withDefaults(
     videoUrl: 'https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/iStock-1702872444.mp4'
   }
 );
+
+// A lede may carry <br> to control where it breaks. Split on it and emit real
+// line breaks rather than rendering the tag as visible text, without opening
+// the whole string up to raw HTML.
+const ledeLines = computed(() => String(props.lede ?? '').split(/<br\s*\/?>/i));
 </script>
 
 <style scoped>

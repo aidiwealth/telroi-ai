@@ -250,12 +250,16 @@ footer { background: #fff; padding: 72px 0 40px; }
 .foot-linklike {
   display: block;
   font-family: inherit;
-  font-size: inherit;
-  color: inherit;
+  /* Matches .foot-col a exactly — inheriting instead left it a different size
+     and with no vertical padding, so it sat out of rhythm with the links. */
+  font-size: 14px;
+  color: var(--ink);
+  padding: 6px 0;
   background: none;
   border: none;
-  padding: 0;
   cursor: pointer;
   text-align: left;
+  transition: color 0.15s;
 }
+.foot-linklike:hover { color: var(--signal); }
 </style>

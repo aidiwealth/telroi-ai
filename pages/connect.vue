@@ -64,10 +64,6 @@
       :capabilities="workflowCapabilities"
     />
 
-    <EditorialCallout
-      label="Why Telroi Connect"
-      text="Connect runs the same SIP infrastructure that powers <em>Telroi VAN and partner CPaaS platforms</em>. Build on rails already proven at carrier-grade volume, with voice workflows and business logic in the same API."
-    />
 
     <ClosingCta
       title-start="Voice infrastructure for"

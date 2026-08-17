@@ -26,9 +26,6 @@
             <div class="suite-icon" v-html="tool.icon"/>
             <h3>{{ tool.name }}</h3>
             <p>{{ tool.body }}</p>
-            <ul class="suite-list">
-              <li v-for="feat in tool.features" :key="feat">{{ feat }}</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -137,14 +134,7 @@ const tools = [
       <path d="M7 26v-1a5 3 0 0 1 10 0v1"/>
       <path d="M20 17h6M20 21h4"/>
     </svg>`,
-    body: 'A full contact and deal management system built around voice. Every call is automatically logged, transcribed and scored against the contact.',
-    features: [
-      'Contact and company records',
-      'Deal pipelines and task management',
-      'Automatic call logging and transcription',
-      'AI call summaries written to every record',
-      'Activity history and reporting'
-    ]
+    body: 'A full contact and deal management system built around voice. Every call is automatically logged, transcribed and scored against the contact.'
   },
   {
     name: 'Desktop',
@@ -154,14 +144,7 @@ const tools = [
       <circle cx="16" cy="14" r="4"/>
       <path d="M10 21a6 6 0 0 1 12 0"/>
     </svg>`,
-    body: 'A branded dialer for making and receiving calls from your phone or your desk. Click to call, transfer, hold — everything a team needs, wherever they are.',
-    features: [
-      'Click-to-call from any contact',
-      'Inbound call handling and transfer',
-      'Call recording and playback',
-      'Presence and availability status',
-      'iOS and Android apps coming soon'
-    ]
+    body: 'A branded dialer for making and receiving calls from your phone or your desk. Click to call, transfer, hold — everything a team needs, wherever they are.'
   },
   {
     name: 'Live Call',
@@ -171,14 +154,7 @@ const tools = [
       <circle cx="16" cy="17" r="3"/>
       <path d="M11 26 Q 16 22 21 26"/>
     </svg>`,
-    body: 'A call button for your website and apps. Visitors click to call — they enter their details and connect directly to an agent or your AI. Every caller is automatically captured as a CRM lead.',
-    features: [
-      'Embeddable call widget for any website or app',
-      'Caller details captured as CRM leads automatically',
-      'Routes to an agent, department or AI number',
-      'Customisable appearance to match your brand',
-      'Full call recording and CRM timeline entry'
-    ]
+    body: 'A call button for your website and apps. Visitors click to call — they enter their details and connect directly to an agent or your AI. Every caller is automatically captured as a CRM lead.'
   },
   {
     name: 'Virtual AI Numbers',
@@ -187,14 +163,7 @@ const tools = [
       <path d="M13 8h6M13 13h6"/>
       <circle cx="16" cy="24" r="1.2" fill="currentColor"/>
     </svg>`,
-    body: 'Every business number becomes AI-powered. Inbound calls are answered, routed and resolved by your AI — in any language, 24/7.',
-    features: [
-      'AI answers every inbound call',
-      'Local language support',
-      'Intelligent routing and escalation',
-      'Call logs written to the CRM',
-      'Available on all your Telroi numbers'
-    ]
+    body: 'Every business number becomes AI-powered. Inbound calls are answered, routed and resolved by your AI — in any language, 24/7.'
   }
 ];
 </script>

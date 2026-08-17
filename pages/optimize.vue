@@ -34,10 +34,6 @@
       title-em="voice intelligence"
       :capabilities="capabilities"
     />
-    <EditorialCallout
-      label="Why Telroi Optimize"
-      text="Optimize is what makes Telroi <em>AI-native</em>. The routing and quality layer is intelligent by default — not an add-on, not a feature. You just see better numbers."
-    />
     <ClosingCta
       title-start="Voice infrastructure for"
       title-em="businesses that pick up."

@@ -34,10 +34,6 @@
       title-em="virtual ai numbers"
       :capabilities="capabilities"
     />
-    <EditorialCallout
-      label="Why Telroi VAN"
-      text="VAN is what Telroi looks like when the entire voice stack <em>lands as a single product</em>. Numbers, AI, routing, recording, escalation — one phone number, ready to use."
-    />
     <ClosingCta
       title-start="Voice infrastructure for"
       title-em="businesses that pick up."
