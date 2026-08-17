@@ -210,7 +210,21 @@
 }
 @media (max-width: 820px) {
   .diagram-section { padding: 56px 0; }
-  .diagram-section .panel { padding: 64px 28px; border-radius: 22px; }
+  .diagram-section .panel { padding: 64px 16px; border-radius: 22px; }
+
+  /* The diagram is 1100x620. Scaled to a phone's width it came out about
+     150px tall, inside a wrap still holding min-height 580px — a tall empty
+     box around a diagram too small to read. Drop the reserved height and let
+     it keep a legible size, scrolling sideways instead of shrinking. */
+  .diagram-wrap {
+    min-height: 0;
+    margin-top: 36px;
+    padding: 28px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .arch-svg { min-width: 640px; }
 }
 .diagram-section :deep(.kicker) { color: #7fa8c5; }
 .diagram-section :deep(.sec-title) { color: #fff; }

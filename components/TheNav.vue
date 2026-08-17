@@ -150,20 +150,80 @@
         >
           <span>{{ t('nav.cta') }}</span> <span class="arrow">→</span>
         </button>
-        <button class="mobile-toggle" aria-label="Menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <button
+          class="mobile-toggle"
+          type="button"
+          :aria-label="mobileOpen ? 'Close menu' : 'Open menu'"
+          :aria-expanded="mobileOpen"
+          aria-controls="mobile-menu"
+          @click="mobileOpen = !mobileOpen"
+        >
+          <svg v-if="!mobileOpen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+          <svg v-else width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18"/>
           </svg>
         </button>
       </div>
     </div>
+
+    <!-- Mobile menu. The desktop nav is display:none under 960px, so without
+         this the hamburger had nothing to open. Flat list rather than nested
+         dropdowns: hover menus do not translate to touch. -->
+    <Transition name="mm">
+      <div v-if="mobileOpen" id="mobile-menu" class="mobile-menu">
+        <div class="mm-inner">
+          <div class="mm-label">Products</div>
+          <NuxtLink class="mm-link" to="/connect">Connect</NuxtLink>
+          <NuxtLink class="mm-link" to="/optimize">Optimize</NuxtLink>
+          <NuxtLink class="mm-link" to="/van">VAN</NuxtLink>
+          <NuxtLink class="mm-link" to="/one">{{ t('nav.download') }}</NuxtLink>
+
+          <div class="mm-label">Resources</div>
+          <a class="mm-link" href="https://developers.telroi.ai/api/docs" target="_blank" rel="noopener noreferrer">Developers</a>
+          <NuxtLink class="mm-link" to="/#integrations">Integrations</NuxtLink>
+          <NuxtLink class="mm-link" to="/customers">Customers</NuxtLink>
+          <NuxtLink class="mm-link" to="/pricing">{{ t('nav.pricing') }}</NuxtLink>
+
+          <div class="mm-actions">
+            <button
+              type="button"
+              class="btn btn-dark mm-cta"
+              data-cal-link="telroiai/30min"
+              data-cal-namespace="30min"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >
+              <span>{{ t('nav.cta') }}</span> <span class="arrow">→</span>
+            </button>
+            <a href="https://app.telroi.ai/login" class="mm-signin">{{ t('nav.signin') }}</a>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch, onBeforeUnmount } from 'vue';
 const { t } = useI18n();
 const openDropdown = ref<string | null>(null);
+
+const mobileOpen = ref(false);
+
+// Tapping a link navigates without unmounting the header, so the panel has to
+// be closed explicitly or it stays over the new page.
+const route = useRoute();
+watch(() => route.fullPath, () => { mobileOpen.value = false; });
+
+// Stop the page scrolling behind the open panel.
+watch(mobileOpen, (open) => {
+  if (import.meta.server) return;
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+onBeforeUnmount(() => {
+  if (!import.meta.server) document.body.style.overflow = '';
+});
 </script>
 
 <style scoped>
@@ -201,10 +261,75 @@ const openDropdown = ref<string | null>(null);
 .nav-signin:hover { color: var(--signal); }
 @media (max-width: 720px) { .nav-signin { display: none; } }
 
-.mobile-toggle { display: none; background: none; border: 0; padding: 6px; }
+.mobile-toggle { display: none; background: none; border: 0; padding: 6px; cursor: pointer; }
 @media (max-width: 960px) {
   .nav-links { display: none; }
   .mobile-toggle { display: block; }
+}
+/* Never show the panel where the desktop nav is visible. */
+@media (min-width: 961px) {
+  .mobile-menu { display: none; }
+}
+
+.mobile-menu {
+  /* Absolute, not fixed. .nav carries a backdrop-filter, which makes it the
+     containing block for fixed descendants — a fixed panel would be measured
+     against the 64px header instead of the viewport and collapse to nothing.
+     .nav is sticky, so it is a positioned ancestor and top:100% sits it right
+     under the bar. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
+  z-index: 49;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mm-inner { padding: 22px 20px 40px; }
+
+.mm-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding: 18px 0 10px;
+  border-bottom: 1px solid var(--rule-2);
+  margin-bottom: 4px;
+}
+.mm-label:first-child { padding-top: 0; }
+
+.mm-link {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 13px 0;
+}
+.mm-link:active { color: var(--signal); }
+
+.mm-actions {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-2);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.mm-cta { font-family: inherit; cursor: pointer; }
+.mm-signin { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+
+.mm-enter-active, .mm-leave-active { transition: opacity 0.22s var(--motion-ease); }
+.mm-enter-from, .mm-leave-to { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .mm-enter-active, .mm-leave-active { transition: none; }
 }
 
 /* Dropdowns */
