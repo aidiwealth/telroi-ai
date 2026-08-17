@@ -70,6 +70,7 @@
       title-em="businesses that pick up."
       body="Talk to our team about how Telroi fits your stack. Sandbox keys available for testing."
       cta-text="Talk to sales"
+      tinted
       cal-popup
     />
   </div>

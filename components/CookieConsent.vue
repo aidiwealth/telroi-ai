@@ -14,8 +14,10 @@
         <h2 id="cc-title" class="cc-title">You choose what loads.</h2>
 
         <p id="cc-body" class="cc-body">
-          The site works without any of this. Two features load code from other
-          companies, so we ask before running them.
+          We would like to use cookies and similar technologies for two optional
+          purposes: measuring how this site is used, and running our booking
+          calendar. Neither stores anything on your device unless you allow it,
+          and you can change your choice at any time.
         </p>
 
         <!-- Preferences -->
@@ -35,8 +37,9 @@
             <label class="cc-row-text" for="cc-analytics">
               <span class="cc-row-name">Analytics</span>
               <span class="cc-row-note">
-                Google Analytics, so we can see which pages people read. Off by
-                default, and turning it off later clears what it stored.
+                Google Analytics, so we can see which pages people read. It sets
+                no cookies and records nothing that identifies you until you
+                allow it, and turning it off again clears what it stored.
               </span>
             </label>
             <button

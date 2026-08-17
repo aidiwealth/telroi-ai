@@ -1,51 +1,32 @@
 // plugins/analytics.client.ts
 //
-// Google Analytics 4, loaded only after the visitor allows it.
+// Google Analytics 4 with Consent Mode v2.
 //
-// The tag is deliberately NOT in nuxt.config's head. A script tag there runs on
-// every page load, which would set _ga cookies before anyone had been asked —
-// the consent banner would then be decoration rather than a control.
+// The tag loads on every page, but denied by default: no analytics cookies and
+// no identifiers until the visitor allows it. That is Google's own documented
+// pattern for consent, and it means the tag is detectable — a tag that only
+// appears after a click is invisible to Google's checker, which never clicks.
 //
-// Revoking works too: gtag has no unload, so we set Google's documented
-// ga-disable flag, drop the cookies it wrote, and stop sending.
+// The order below matters. `consent default` has to be pushed before the gtag
+// script runs, or the script starts up already assuming permission.
 
 const GA_ID = 'G-9GPN9TSFTM';
+const STORAGE_KEY = 'telroi.cookie-consent';
 
-let injected = false;
-
-function loadGa() {
-  const w = window as any;
-
-  // Re-enable if this visitor had previously revoked in the same session.
-  w['ga-disable-' + GA_ID] = false;
-
-  if (injected) {
-    // Script is already on the page; just resume collection for this visit.
-    w.gtag?.('config', GA_ID);
-    return;
+/** Reads stored consent synchronously, so a returning visitor who already
+ *  allowed analytics is granted before the first hit rather than after. */
+function storedAnalyticsConsent(): boolean {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return parsed?.version === 1 && parsed?.categories?.analytics === true;
+  } catch {
+    return false;
   }
-  injected = true;
-
-  w.dataLayer = w.dataLayer || [];
-  function gtag(...args: any[]) { w.dataLayer.push(arguments); }
-  w.gtag = w.gtag || gtag;
-
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-  document.head.appendChild(s);
-
-  w.gtag('js', new Date());
-  w.gtag('config', GA_ID);
 }
 
-function unloadGa() {
-  const w = window as any;
-  // Documented opt-out flag: gtag checks it before sending anything.
-  w['ga-disable-' + GA_ID] = true;
-
-  // Remove what it already wrote, so declining actually clears the cookies
-  // rather than merely stopping new hits.
+function clearGaCookies() {
   const host = location.hostname;
   const domains = [host, '.' + host, '.' + host.split('.').slice(-2).join('.')];
   document.cookie.split(';').forEach((c) => {
@@ -61,19 +42,47 @@ function unloadGa() {
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return;
 
+  const w = window as any;
+  const granted = storedAnalyticsConsent();
+
+  w.dataLayer = w.dataLayer || [];
+  function gtag(..._args: any[]) { w.dataLayer.push(arguments); }
+  w.gtag = w.gtag || gtag;
+
+  // Denied unless this visitor has already said otherwise. wait_for_update
+  // holds hits briefly so a decision made straight away is not missed.
+  w.gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: granted ? 'granted' : 'denied',
+    wait_for_update: 500
+  });
+
+  w.gtag('js', new Date());
+  w.gtag('config', GA_ID);
+
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+
   const { categories } = useCookieConsent();
 
   watch(
     () => categories.value.analytics,
-    (allowed) => { allowed ? loadGa() : unloadGa(); },
-    { immediate: true }
+    (allowed, was) => {
+      w.gtag('consent', 'update', { analytics_storage: allowed ? 'granted' : 'denied' });
+      // Withdrawing should remove what was already written, not merely stop
+      // new hits. Skip on first run so we do not clear on a normal page load.
+      if (was === true && !allowed) clearGaCookies();
+    }
   );
 
   // GA4 counts a page_view per config call; SPA route changes need one each.
   const router = useRouter();
   router.afterEach((to) => {
-    if (!categories.value.analytics) return;
-    (window as any).gtag?.('event', 'page_view', {
+    w.gtag?.('event', 'page_view', {
       page_path: to.fullPath,
       page_location: window.location.href,
       page_title: document.title
