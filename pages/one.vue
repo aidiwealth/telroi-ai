@@ -14,7 +14,7 @@
       <div class="wrap">
         <div class="sec-head reveal">
           <div class="kicker">The suite</div>
-          <h2 class="sec-title">Everything connected. <em>Nothing missing.</em></h2>
+          <h2 class="sec-title">Everything connected. <br><em>Nothing missing.</em></h2>
           <p class="sec-lede">Telroi One bundles the full communications stack under one brand, one login, and one support line — built on top of the same AI-native voice infrastructure that powers our API clients.</p>
         </div>
 

@@ -79,10 +79,6 @@
               <div class="addon-rate">{{ currency.symbol }}{{ formatUsage(rates.voiceOtpCall) }}</div>
               <div class="addon-meta">per voice OTP call</div>
             </div>
-            <div class="addon addon--highlight">
-              <div class="addon-rate">Included</div>
-              <div class="addon-meta">Telroi Optimize — on all plans</div>
-            </div>
           </div>
         </div>
 

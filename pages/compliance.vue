@@ -3,9 +3,8 @@
     <ProductHero
       kicker="Compliance"
       video-url="https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/iStock-1480311246.mp4"
-      title-start="Compliance at"
-      title-em="Telroi."
-      lede="Built for regulated voice."
+      title-start="Built for "
+      title-em="regulated voice."
       cta-primary="Request compliance docs"
     />
 

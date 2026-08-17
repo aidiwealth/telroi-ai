@@ -10,9 +10,7 @@
     />
 
     <ContentLoop
-      kicker="Our story"
-      title-start="One voice layer,"
-      title-em="built end-to-end."
+      title-start="Our Story"
       lede="Voice still matters. Most businesses outside the US and Europe were left running it on infrastructure that wasn't built for them. Telroi is different: we own the voice infrastructure end-to-end, built for the markets that mattered to us first."
       :items="items"
     >

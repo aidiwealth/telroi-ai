@@ -74,6 +74,7 @@
           <NuxtLink to="/compliance">{{ t('foot.resources.compliance') }}</NuxtLink>
           <NuxtLink to="/privacy">{{ t('foot.resources.privacy') }}</NuxtLink>
           <NuxtLink to="/terms">Terms of use</NuxtLink>
+          <button type="button" class="foot-linklike" @click="reopenConsent">Cookie settings</button>
         </div>
       </div>
 
@@ -90,6 +91,9 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import type { Lang } from '~/utils/translations';
 
 const { t, setLang, currentLang } = useI18n();
+
+// Consent has to be changeable after the fact, not just on the first visit.
+const { reopen: reopenConsent } = useCookieConsent();
 
 const langOpen = ref(false);
 const langWrap = ref<HTMLElement | null>(null);
@@ -238,5 +242,20 @@ footer { background: #fff; padding: 72px 0 40px; }
 }
 @media (max-width: 520px) {
   .foot-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<style scoped>
+/* A control, not a destination — but it belongs in the same row as the links. */
+.foot-linklike {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
 }
 </style>

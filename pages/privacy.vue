@@ -197,7 +197,7 @@ const sections: LegalSection[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We may use cookies and similar technologies to improve site functionality, analytics, and performance. You can control cookie preferences through your browser settings.'
+        text: 'Nothing that identifies you loads until you allow it. We store your language choice and your cookie decision on your own device. With your permission we also load Google Analytics, which sets its own cookies to measure which pages are read, and the Cal.com booking calendar. Decline and neither is loaded; withdraw analytics later and the cookies it set are cleared. Change your choice any time from the cookie settings link in the footer.'
       }
     ]
   },

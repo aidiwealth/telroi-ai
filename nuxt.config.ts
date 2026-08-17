@@ -66,14 +66,14 @@ export default defineNuxtConfig({
           'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
           'Content-Security-Policy': [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' https://app.cal.com https://fonts.googleapis.com",
+            "script-src 'self' 'unsafe-inline' https://app.cal.com https://fonts.googleapis.com https://www.googletagmanager.com",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "font-src 'self' https://fonts.gstatic.com",
-            "img-src 'self' data: https://pub-f138f42d66b748108ebf7432c7314665.r2.dev",
+            "img-src 'self' data: https://pub-f138f42d66b748108ebf7432c7314665.r2.dev https://www.googletagmanager.com https://*.google-analytics.com",
             "media-src 'self' https://pub-f138f42d66b748108ebf7432c7314665.r2.dev",
             // app.telroi.ai is needed for GET /public/pricing — the pricing page
             // reads live rates from it rather than hard-coding figures that drift.
-            "connect-src 'self' https://app.cal.com https://api.telroi.ai https://app.telroi.ai",
+            "connect-src 'self' https://app.cal.com https://api.telroi.ai https://app.telroi.ai https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
             "frame-src https://app.cal.com",
             "object-src 'none'",
             "base-uri 'self'"

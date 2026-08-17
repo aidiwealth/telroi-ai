@@ -3,9 +3,8 @@
     <ProductHero
       kicker="Security"
       video-url="https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/iStock-1480311246.mp4"
-      title-start="Security at"
-      title-em="Telroi."
-      lede="Carrier-grade, end to end."
+      title-start="Carrier-grade"
+      title-em="end to end."
       cta-primary="Talk to security team"
     />
 

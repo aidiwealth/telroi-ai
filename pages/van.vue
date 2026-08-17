@@ -3,9 +3,9 @@
     <ProductHero
       kicker="Telroi VAN"
       video-url="https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/9113598-hd_1920_1080_30fps.mp4"
-      title-start="Every business number,"
+      title-start="Every mobile number,"
       title-em="now AI-powered."
-      lede="Answer every call. In any language."
+      lede="Answer every call. In multiple language."
     />
 
     <section class="showcase">
@@ -13,7 +13,7 @@
         <div class="showcase-grid">
           <div class="showcase-text reveal">
             <div class="kicker-text">A number that picks up</div>
-            <h2>First-ring pickup. <em>Every conversation captured.</em></h2>
+            <h2>Every <em>conversation captured.</em></h2>
             <p>A Virtual AI Number is a real business number with an AI assistant attached. Answers in local languages, captures intent, writes to your CRM, escalates to a human when needed.</p>
             <ul class="showcase-mini-list">
               <li>Live conversation in 30+ languages</li>

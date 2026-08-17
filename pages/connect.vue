@@ -5,7 +5,7 @@
       video-url="https://pub-f138f42d66b748108ebf7432c7314665.r2.dev/iStock-2260311647.mp4"
       title-start="Reach every"
       title-em="customer."
-      lede="Voice connectivity, programmable workflows and business logic. One API."
+      lede="Voice connectivity, programmable workflows <br>and business logic. One API."
     />
 
     <!-- SHOWCASE 1: routing visual -->

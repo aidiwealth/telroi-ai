@@ -6,11 +6,14 @@
     </main>
     <TheFooter />
 
-    <!-- Back to top -->
+    <CookieConsent />
+
+    <!-- Back to top. Shifts right while the consent card occupies this corner. -->
     <Transition name="btt">
       <button
         v-if="showBtt"
         class="btt-btn"
+        :class="{ 'btt-shifted': consentDecided === false }"
         type="button"
         aria-label="Back to top"
         @click="scrollToTop"
@@ -29,6 +32,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 useScrollReveal();
 
 const showBtt = ref(false);
+
+// The consent card is bottom-left too, so the button steps aside while it shows.
+const { decided: consentDecided, hydrate } = useCookieConsent();
+onMounted(hydrate);
 
 function onScroll() {
   showBtt.value = window.scrollY > 600;
@@ -64,6 +71,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
   background: var(--signal);
   transform: translateY(-2px);
 }
+.btt-shifted { left: auto; right: 32px; }
 .btt-btn svg {
   width: 18px;
   height: 18px;
