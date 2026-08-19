@@ -18,7 +18,7 @@
             <p>Telroi's routing layer sits between your applications and the global voice network. SIP, PSTN, mobile. One API, real-time delivery analytics, no vendor stitching.</p>
             <ul class="showcase-mini-list">
               <li>2,800+ active routes across our termination footprint</li>
-              <li>Direct carrier interconnects in Africa and growing markets</li>
+              <li>Direct carrier interconnects across Africa, the GCC, Asia and LATAM</li>
               <li>Sub-200ms median answer times where it matters</li>
             </ul>
           </div>

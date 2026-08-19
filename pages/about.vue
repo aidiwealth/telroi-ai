@@ -50,7 +50,7 @@ const items = [
     num: '01' as const,
     label: 'THE PROBLEM',
     title: 'Voice was broken outside the West',
-    body: 'Most voice infrastructure was built for North American and European carrier topologies. Businesses in Africa, LATAM and Asia ended up stitching together patchwork stacks with poor call quality, no CLI compliance, and no local market access.'
+    body: 'Most voice infrastructure was built for North American and European carrier topologies. Businesses in Africa, the GCC, Asia and LATAM ended up stitching together patchwork stacks with poor call quality, no CLI compliance, and no local market access.'
   },
   {
     num: '02' as const,
