@@ -1,12 +1,16 @@
 // plugins/cal.client.ts
 //
-// Loads the Cal.com embed so any element with data-cal-link / data-cal-namespace
-// opens the booking popup — but only once the visitor has allowed it. The embed
-// is a third-party script that sets its own cookies, so loading it on page load
-// would be collecting consent after the fact.
+// The Cal.com booking embed loads on the first click of a booking button, not
+// on page load and not behind a consent toggle.
 //
-// Until it is allowed, a click on a booking button reopens the consent chooser
-// rather than doing nothing, so the button never looks broken.
+// Loading it for every visitor would set third-party cookies on people who
+// never book. Putting it behind a toggle meant a visitor who wanted to book had
+// to find and flip a cookie setting first, which cost us the booking. Clicking
+// "Book a demo" is itself an explicit request for the booking service, so the
+// embed loads at that moment and the popup opens straight away.
+
+const CAL_LINK = 'telroiai/30min';
+const CAL_NS = '30min';
 
 let loaded = false;
 
@@ -40,32 +44,37 @@ function loadCalEmbed() {
   })(window, 'https://app.cal.com/embed/embed.js', 'init');
 
   const Cal = (window as any).Cal;
-  Cal('init', '30min', { origin: 'https://app.cal.com' });
-  Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+  Cal('init', CAL_NS, { origin: 'https://app.cal.com' });
+  Cal.ns[CAL_NS]('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 }
 
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return;
 
-  const { categories, reopen } = useCookieConsent();
-
-  // Load as soon as booking is allowed — on this page view if consent was
-  // stored earlier, or the moment the visitor allows it, with no reload.
-  watch(
-    () => categories.value.booking,
-    (allowed) => { if (allowed) loadCalEmbed(); },
-    { immediate: true }
-  );
-
-  // Capture phase, so this runs before Cal's own delegated handler would.
+  // Capture phase, so this runs before Cal's own delegated handler exists.
   document.addEventListener('click', (e) => {
-    if (categories.value.booking) return;
     const el = (e.target as HTMLElement | null)?.closest?.('[data-cal-link]');
     if (!el) return;
+
+    // Once the embed is present, Cal handles its own buttons.
+    if (loaded) return;
+
     e.preventDefault();
     e.stopPropagation();
-    // A decision may not have been made yet, or booking may have been declined.
-    // Either way, ask — the visitor is trying to use the thing it gates.
-    reopen();
+
+    loadCalEmbed();
+
+    // Calls made before the script finishes are queued by the snippet above
+    // and run on load, so the popup opens without a second click.
+    const link = el.getAttribute('data-cal-link') || CAL_LINK;
+    const ns = el.getAttribute('data-cal-namespace') || CAL_NS;
+    const Cal = (window as any).Cal;
+    const api = Cal?.ns?.[ns];
+    if (api) {
+      api('modal', {
+        calLink: link,
+        config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' }
+      });
+    }
   }, true);
 });

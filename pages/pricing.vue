@@ -58,9 +58,10 @@
               <span class="symbol">{{ tier.price === 'Custom' ? '' : currency.symbol }}</span>
               <span class="amount">{{ tier.price === 'Custom' ? 'Custom' : formatPrice(tier.usd) }}</span>
             </div>
-            <div class="tier-period">{{ tier.period }}</div>
+            <div class="tier-period" :class="{ 'has-save': tier.save }">{{ tier.period }}</div>
             <div v-if="tier.save" class="tier-save">
-              {{ tier.monthsFree }} months free versus paying monthly
+              <span class="tier-save-badge">{{ tier.monthsFree }} months free</span>
+              <span class="tier-save-note">versus paying monthly</span>
             </div>
             <button
               v-if="tier.cta === 'Talk to sales'"
@@ -533,11 +534,14 @@ const pricingFaqs = computed(() => [
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 18px;
+  /* Sits beside the currency switcher, which is also inline-flex — without a
+     left margin the two pills run together. */
+  margin: 28px 0 0 14px;
   padding: 4px;
-  background: var(--paper-3);
+  background: var(--paper-2);
   border: 1px solid var(--rule);
   border-radius: 999px;
+  vertical-align: top;
 }
 .billing-opt {
   display: inline-flex;
@@ -562,11 +566,35 @@ const pricingFaqs = computed(() => [
   color: #00a872;
 }
 .tier-save {
-  font-size: 12px;
-  color: #00a872;
-  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 26px;
 }
-.tier-card.featured .tier-save { color: #7fe3bd; }
+.tier-save-badge {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: #00875c;
+  background: #e6f6f0;
+  border: 1px solid #bfe8d8;
+  border-radius: 999px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.tier-save-note {
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.tier-card.featured .tier-save-badge {
+  color: #d7f7ea;
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+.tier-card.featured .tier-save-note { color: rgba(255, 255, 255, 0.5); }
 
 .tier-price { display: flex; align-items: baseline; gap: 3px; }
 .tier-price .symbol { font-size: 19px; color: var(--ink-soft); }
@@ -577,6 +605,7 @@ const pricingFaqs = computed(() => [
 .tier-card.featured .tier-price .symbol,
 .tier-card.featured .tier-price .amount { color: #fff; }
 .tier-period { font-size: 13px; color: var(--ink-soft); margin: 6px 0 28px; }
+.tier-period.has-save { margin-bottom: 12px; }
 .tier-card.featured .tier-period { color: rgba(255,255,255,0.55); }
 .tier-fine { font-size: 12.5px; color: var(--ink-soft); margin-top: 16px; }
 .tier-card.featured .tier-fine { color: rgba(255,255,255,0.45); }

@@ -243,7 +243,7 @@ const sections: LegalSection[] = [
     blocks: [
       {
         type: 'p',
-        text: 'Nothing that identifies you loads until you allow it. We store your language choice and your cookie decision on your own device. With your permission we also load Google Analytics, which sets its own cookies to measure which pages are read, and the Cal.com booking calendar. Decline and neither is loaded; withdraw analytics later and the cookies it set are cleared. Change your choice any time from the cookie settings link in the footer.'
+        text: 'We store your language choice and your cookie decision on your own device. With your permission we also load Google Analytics, which sets its own cookies to measure which pages are read; decline and it stores nothing, and withdrawing later clears the cookies it set. Separately, our booking calendar is provided by Cal.com and loads only when you click a booking button — that is, only when you have asked for it — and it sets its own cookies at that point. Change your cookie choice any time from the cookie settings link in the footer.'
       }
     ]
   },

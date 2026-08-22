@@ -14,10 +14,9 @@
         <h2 id="cc-title" class="cc-title">You choose what loads.</h2>
 
         <p id="cc-body" class="cc-body">
-          We would like to use cookies and similar technologies for two optional
-          purposes: measuring how this site is used, and running our booking
-          calendar. Neither stores anything on your device unless you allow it,
-          and you can change your choice at any time.
+          We would like to measure how this site is used, so we can see which
+          pages people read. Nothing is stored on your device for that purpose
+          unless you allow it, and you can change your choice at any time.
         </p>
 
         <!-- Preferences -->
@@ -55,26 +54,6 @@
             </button>
           </div>
 
-          <div class="cc-row">
-            <label class="cc-row-text" for="cc-booking">
-              <span class="cc-row-name">Booking calendar</span>
-              <span class="cc-row-note">
-                Loads Cal.com so “Book a demo” can open a calendar. Left off,
-                we ask again the first time you use one of those buttons.
-              </span>
-            </label>
-            <button
-              id="cc-booking"
-              type="button"
-              class="cc-switch"
-              :class="{ 'is-on': draft.booking }"
-              role="switch"
-              :aria-checked="draft.booking"
-              @click="draft.booking = !draft.booking"
-            >
-              <span class="cc-knob" />
-            </button>
-          </div>
         </div>
 
         <!-- Actions. Refusing is exactly as easy as accepting. -->
@@ -113,16 +92,14 @@ const { decided, categories, panelOpen, save, acceptAll, rejectAll } = useCookie
 
 // Edited separately from live consent, so opening the panel and changing your
 // mind without saving does not load anything in the meantime.
-const draft = reactive({ analytics: false, booking: false });
+const draft = reactive({ analytics: false });
 
 watch(categories, (c) => {
   draft.analytics = c.analytics;
-  draft.booking = c.booking;
 }, { immediate: true, deep: true });
 
 function openPanel() {
   draft.analytics = categories.value.analytics;
-  draft.booking = categories.value.booking;
   panelOpen.value = true;
 }
 </script>

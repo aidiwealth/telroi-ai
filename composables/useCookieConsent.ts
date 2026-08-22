@@ -2,10 +2,11 @@
 //
 // Consent state for the whole site. Two things matter here:
 //
-//  1. Nothing that needs consent may run before it is given. Both the Google
-//     Analytics tag and the Cal.com booking embed are loaded by their own
-//     client plugins only when their category is true, and are loaded the
-//     moment it flips true without needing a reload.
+//  1. Nothing that needs consent may run before it is given. The Google
+//     Analytics tag is loaded by its own client plugin only when analytics is
+//     allowed, and is loaded the moment it flips true without a reload.
+//     The booking embed is not a category here: it loads only when someone
+//     clicks a booking button, which is an explicit request for that service.
 //  2. A stored choice is only honoured while it still describes the same
 //     categories. Bump VERSION when categories change and everyone is asked
 //     again, rather than silently inheriting consent for something new.
@@ -19,7 +20,6 @@ const VERSION = 1;
 
 export type ConsentCategories = {
   analytics: boolean;
-  booking: boolean;
 };
 
 type StoredConsent = {
@@ -28,7 +28,7 @@ type StoredConsent = {
   categories: ConsentCategories;
 };
 
-const DENY_ALL: ConsentCategories = { analytics: false, booking: false };
+const DENY_ALL: ConsentCategories = { analytics: false };
 
 export function useCookieConsent() {
   // `decided` stays null until the client has read storage, so the banner never
@@ -86,7 +86,7 @@ export function useCookieConsent() {
     panelOpen.value = false;
   }
 
-  const acceptAll = () => save({ analytics: true, booking: true });
+  const acceptAll = () => save({ analytics: true });
   const rejectAll = () => save({ ...DENY_ALL });
 
   /** Reopens the chooser so a decision can be changed later. */
