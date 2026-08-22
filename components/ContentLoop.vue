@@ -99,13 +99,13 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 interface LoopItem {
-  num: '01' | '02' | '03';
+  num: '01' | '02' | '03' | '04';
   label: string;   // SHORT uppercase label used on the orbital ring (e.g. "ENTERPRISE")
   title: string;   // Full headline on the left
   body: string;    // Description paragraph
 }
 
-defineProps<{
+const props = defineProps<{
   kicker: string;
   titleStart: string;
   titleEm: string;
@@ -113,7 +113,7 @@ defineProps<{
   items: LoopItem[];
 }>();
 
-const activeStep = ref<'01' | '02' | '03'>('01');
+const activeStep = ref<'01' | '02' | '03' | '04'>('01');
 
 // Unique ID so multiple ContentLoop instances on a page don't share the same gradient id
 const uid = Math.random().toString(36).slice(2, 9);
@@ -122,7 +122,10 @@ let interval: ReturnType<typeof setInterval> | null = null;
 
 onMounted(() => {
   interval = setInterval(() => {
-    const order: ('01' | '02' | '03')[] = ['01', '02', '03'];
+    // Follows however many items were passed in, so adding a step does not
+    // silently leave it unreachable.
+    const order = props.items.map((i) => i.num);
+    if (!order.length) return;
     const idx = order.indexOf(activeStep.value);
     activeStep.value = order[(idx + 1) % order.length];
   }, 4500);
