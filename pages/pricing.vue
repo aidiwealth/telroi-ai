@@ -21,6 +21,24 @@
             <span class="currency-code">{{ c.code }}</span>
           </button>
         </div>
+
+        <div class="billing-switch reveal">
+          <button
+            type="button"
+            class="billing-opt"
+            :class="{ active: billing === 'monthly' }"
+            @click="billing = 'monthly'"
+          >Monthly</button>
+          <button
+            type="button"
+            class="billing-opt"
+            :class="{ active: billing === 'annual' }"
+            @click="billing = 'annual'"
+          >
+            Annual
+            <span v-if="rates.saveGrowthPct" class="billing-save">save {{ rates.saveGrowthPct }}%</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -41,6 +59,9 @@
               <span class="amount">{{ tier.price === 'Custom' ? 'Custom' : formatPrice(tier.usd) }}</span>
             </div>
             <div class="tier-period">{{ tier.period }}</div>
+            <div v-if="tier.save" class="tier-save">
+              {{ tier.monthsFree }} months free versus paying monthly
+            </div>
             <button
               v-if="tier.cta === 'Talk to sales'"
               type="button"
@@ -223,7 +244,16 @@ const openFaq = ref<number | null>(0);
 // defaults in server/utils/pricing.ts.
 const FALLBACK = {
   ngnPerUsd: 1600,
-  plans: { startup: { usdMinor: 1000 }, growth: { usdMinor: 1500 } },
+  plans: {
+    startup: { usdMinor: 1000 },
+    growth: { usdMinor: 1500 },
+    annual: {
+      startup: { usdMinor: 10000 },
+      growth: { usdMinor: 15000 },
+      savePctStartup: 16, savePctGrowth: 16,
+      monthsFreeStartup: 2, monthsFreeGrowth: 2
+    }
+  },
   usage: {
     channelMonthly: { usdMinor: 200 },
     numberMonthly: { usdMinor: 170 },
@@ -270,6 +300,12 @@ const rates = computed(() => {
   return {
     startup: minor(a.plans?.startup),
     growth: minor(a.plans?.growth),
+    startupAnnual: minor(a.plans?.annual?.startup),
+    growthAnnual: minor(a.plans?.annual?.growth),
+    saveStartupPct: Number(a.plans?.annual?.savePctStartup) || 0,
+    saveGrowthPct: Number(a.plans?.annual?.savePctGrowth) || 0,
+    monthsFreeStartup: Number(a.plans?.annual?.monthsFreeStartup) || 0,
+    monthsFreeGrowth: Number(a.plans?.annual?.monthsFreeGrowth) || 0,
     channelMonthly: minor(a.usage?.channelMonthly),
     numberMonthly: minor(a.usage?.numberMonthly),
     voiceOtpCall: nano(a.usage?.voiceOtpCall),
@@ -290,6 +326,11 @@ const currencies = computed(() => [
   { code: 'USD', symbol: '$', flag: '🇺🇸', rate: 1 },
   { code: 'NGN', symbol: '₦', flag: '🇳🇬', rate: Number(api.value.ngnPerUsd) || 1600 }
 ]);
+// Annual is billed as one payment covering twelve months; the saving is the
+// months waived rather than a percentage taken off the monthly rate.
+const billing = ref<'monthly' | 'annual'>('monthly');
+const isAnnual = computed(() => billing.value === 'annual');
+
 const currencyCode = ref('USD');
 const currency = computed(() => currencies.value.find((c) => c.code === currencyCode.value) || currencies.value[0]);
 
@@ -317,18 +358,22 @@ function formatUsage(usd: number, usdDecimals?: number): string {
 const tiers = computed(() => [
   {
     name: 'Startup',
-    usd: rates.value.startup,
+    usd: isAnnual.value ? rates.value.startupAnnual : rates.value.startup,
     price: '',
-    period: 'Per workspace, per month',
+    period: isAnnual.value ? 'Per workspace, per year' : 'Per workspace, per month',
+    save: isAnnual.value ? rates.value.saveStartupPct : 0,
+    monthsFree: rates.value.monthsFreeStartup,
     fine: 'Core voice, AI answering and full API access. 7-day trial included.',
     cta: 'Start building',
     featured: false
   },
   {
     name: 'Growth',
-    usd: rates.value.growth,
+    usd: isAnnual.value ? rates.value.growthAnnual : rates.value.growth,
     price: '',
-    period: 'Per workspace, per month',
+    period: isAnnual.value ? 'Per workspace, per year' : 'Per workspace, per month',
+    save: isAnnual.value ? rates.value.saveGrowthPct : 0,
+    monthsFree: rates.value.monthsFreeGrowth,
     fine: 'Everything in Startup plus the full Telroi One suite. 7-day trial included.',
     cta: 'Start building',
     featured: true
@@ -338,6 +383,8 @@ const tiers = computed(() => [
     usd: 0,
     price: 'Custom',
     period: 'For large, regulated or white-label teams',
+    save: 0,
+    monthsFree: 0,
     fine: 'Dedicated subdomain, compliance support and custom onboarding.',
     cta: 'Talk to sales',
     featured: false
@@ -392,6 +439,10 @@ const pricingFaqs = computed(() => [
   {
     q: 'Do you offer a free trial?',
     a: 'Yes. Both Startup and Growth begin with a 7-day trial of the plan you pick, self-serve at signup. We collect a card up front but charge nothing until the trial ends. If you do nothing, the workspace drops to Startup rather than switching off. Sandbox API keys for testing Telroi Connect are free and need no card at all.'
+  },
+  {
+    q: 'Is annual billing cheaper?',
+    a: `Yes. Paying annually costs ${currency.value.symbol}${formatPrice(rates.value.startupAnnual)} for Startup and ${currency.value.symbol}${formatPrice(rates.value.growthAnnual)} for Growth, charged once for twelve months. That is ${rates.value.monthsFreeGrowth} months free against the monthly rate, a saving of about ${rates.value.saveGrowthPct}%. Usage — channels, numbers, airtime and AI — is billed as you consume it either way, so the discount applies to the platform fee rather than to your whole bill.`
   },
   {
     q: 'Can I switch plans later?',
@@ -477,6 +528,46 @@ const pricingFaqs = computed(() => [
   text-transform: uppercase; color: var(--ink-soft); margin-bottom: 20px;
 }
 .tier-card.featured .tier-name { color: rgba(255,255,255,0.55); }
+/* Billing period switch */
+.billing-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  padding: 4px;
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.billing-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.billing-opt.active { background: var(--paper); color: var(--ink); box-shadow: 0 1px 2px rgba(10,10,11,0.06); }
+.billing-save {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #00a872;
+}
+.tier-save {
+  font-size: 12px;
+  color: #00a872;
+  margin-top: 6px;
+}
+.tier-card.featured .tier-save { color: #7fe3bd; }
+
 .tier-price { display: flex; align-items: baseline; gap: 3px; }
 .tier-price .symbol { font-size: 19px; color: var(--ink-soft); }
 .tier-price .amount {

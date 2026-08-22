@@ -97,6 +97,39 @@ const sections: LegalSection[] = [
     ]
   },
   {
+    id: 'sensitive-numbers',
+    title: 'Sensitive call categories and number indemnity',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Certain uses of a Telroi number carry heightened regulatory, carrier and consumer-harm risk. Before we provision or enable a number for any of the categories below, you must execute a Number Use Indemnity in the form we provide. We may decline to provision, or may suspend an existing number, until it is executed.'
+      },
+      {
+        type: 'ul',
+        items: [
+          'One-time passcodes, transaction alerts and any authentication or verification traffic.',
+          'Banking, payments, lending, collections and other regulated financial communications.',
+          'Health, insurance and other communications involving sensitive personal data.',
+          'Emergency, safety, welfare or crisis-related lines.',
+          'Government, public sector and electoral communications.',
+          'Outbound campaigns at scale, including any automated or AI-initiated dialling.'
+        ]
+      },
+      {
+        type: 'p',
+        text: 'Under the Number Use Indemnity you confirm that you hold the consents and licences required for the traffic, that the caller identity you present is one you are entitled to use, and that you will observe local rules on calling hours, opt-out and recording. You indemnify Telroi against claims, regulatory penalties, carrier charges and losses arising from your use of the number, including misuse by your own end users.'
+      },
+      {
+        type: 'p',
+        text: 'The executed document is retained by Telroi for the life of the number and for seven (7) years after it is released, and forms part of the compliance record we may be required to produce to a carrier, a regulator or a court. You will be given a copy on execution and may request a further copy at any time.'
+      },
+      {
+        type: 'p',
+        text: 'Nothing in the Number Use Indemnity transfers to Telroi any responsibility for the content, timing, targeting or lawfulness of your traffic, which remains yours.'
+      }
+    ]
+  },
+  {
     id: 'fees',
     title: 'Fees, billing, and payment',
     blocks: [

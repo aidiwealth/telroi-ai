@@ -51,6 +51,12 @@ const items = [
     label: 'TELECOM',
     title: 'Regional regulations, handled in-house',
     body: 'CLI compliance, anonymous-call blocking, recording rules and number portability. Handled per jurisdiction across FCC, Ofcom, NCC and beyond.'
+  },
+  {
+    num: '04' as const,
+    label: 'NUMBERS',
+    title: 'Indemnity required for sensitive traffic',
+    body: 'Numbers carrying OTPs, financial, health, emergency or large outbound campaigns require an executed Number Use Indemnity before we enable them. The signed document is stored for the life of the number and seven years after, and forms the compliance record we can produce to a carrier or regulator.'
   }
 ];
 </script>

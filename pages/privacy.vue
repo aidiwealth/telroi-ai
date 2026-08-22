@@ -141,6 +141,52 @@ const sections: LegalSection[] = [
     ]
   },
   {
+    id: 'recording',
+    title: 'Call recording and transcription',
+    blocks: [
+      {
+        type: 'p',
+        text: 'The platform can record and transcribe calls where a customer enables it. Where recording is enabled, Telroi processes the recording, any transcript and any AI-generated summary as a processor acting on that customer\u2019s instructions. The customer is the controller and decides whether recording happens at all.'
+      },
+      {
+        type: 'p',
+        text: 'Recording law differs by jurisdiction. Some require notice to one party, others the consent of every party on the call. The customer operating the number is responsible for giving lawful notice, capturing consent where it is required, and honouring any objection. Telroi provides announcement and consent-capture features but does not decide when they are used.'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Recordings are encrypted in transit and at rest.',
+          'Access is limited to the customer\u2019s authorised users and to Telroi staff acting on a support request or a legal obligation, with that access logged.',
+          'Retention is set by the customer, subject to any minimum a regulator imposes on the customer\u2019s own sector.',
+          'Recordings are deleted on the customer\u2019s instruction, or on account closure in line with the periods below.',
+          'Recordings and transcripts are not used to train Telroi models, and are not shared with an AI provider except to the extent needed to deliver the feature the customer has enabled.'
+        ]
+      },
+      {
+        type: 'p',
+        text: 'If you were a party to a recorded call and want a copy, deletion or an explanation of why it was recorded, contact the business that called you \u2014 they control the recording. We will support them in responding, and you may also contact us at privacy@telroi.ai.'
+      }
+    ]
+  },
+  {
+    id: 'compliance-records',
+    title: 'Compliance and indemnity records',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Where a number is provisioned for a sensitive call category, we require an executed Number Use Indemnity before enabling it, as set out in our Terms of use. That executed document, together with the identity and authority evidence supporting it, is stored as part of our compliance record.'
+      },
+      {
+        type: 'p',
+        text: 'These records are held for the life of the number and for seven (7) years after it is released. We keep them because a carrier, a regulator or a court may require us to show who was responsible for traffic on a given number and on what basis it was authorised. They are held on the legal bases of legal obligation and legitimate interest, and are not used for marketing.'
+      },
+      {
+        type: 'p',
+        text: 'The signatory receives a copy on execution and may request a further copy at any time. Because these records exist to meet a legal obligation, a request to erase them may be refused for as long as that obligation applies.'
+      }
+    ]
+  },
+  {
     id: 'retention',
     title: 'Data retention',
     blocks: [
